@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7efe2">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="description" content="詹咏朋與連怡蘭的婚宴邀請">
+  <title>詹咏朋 × 連怡蘭｜婚宴邀請</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237b2d35'/%3E%3Cpath d='M32 49S12 38 12 23a11 11 0 0 1 20-6 11 11 0 0 1 20 6c0 15-20 26-20 26Z' fill='%23fff8ee'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: "ChenYuluoyan Invite";
+      src: url("assets/fonts/chenyuluoyan-invite-v2.woff2") format("woff2");
+      font-display: swap;
+    }
+    :root {
+      --paper: #fff8ec;
+      --ink: #2e2723;
+      --wine: #7b2d35;
+      --coral: #e86857;
+      --gold: #e2ad43;
+      --sage: #71806b;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #d8cdbd;
+      font-family: "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-user-drag: none;
+      -webkit-touch-callout: none;
+    }
+    .story {
+      position: relative;
+      width: min(100%, 480px);
+      margin-inline: auto;
+      overflow: clip;
+      background: var(--paper);
+      box-shadow: 0 0 70px rgba(42,28,20,.22);
+    }
+    .scene { position: relative; min-height: 100svh; overflow: hidden; isolation: isolate; }
+    .scene-kicker { font: 700 11px/1 Georgia, serif; letter-spacing: .22em; }
+    .scene-title {
+      margin: 8px 0 0;
+      font-family: "Noto Serif TC", "Source Han Serif TC", "PMingLiU", serif;
+      font-size: clamp(34px, 10vw, 52px);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: .06em;
+    }
+    .reveal { opacity: 0; transform: translateY(34px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .intro-heading.reveal { transform: rotate(-3deg) translateY(34px); }
+    .intro-heading.reveal.in { transform: rotate(-3deg); }
+    .cutout-wrap.reveal { opacity: 0; transform: translate(-50%, 72px) scale(.84); transform-origin: center bottom; transition: opacity .7s ease, transform 1.05s cubic-bezier(.18,1.25,.42,1); }
+    .cutout-wrap.reveal.in { opacity: 1; transform: translateX(-50%) scale(1); }
+    .wipe { clip-path: inset(0 0 100% 0); transition: clip-path 1.15s cubic-bezier(.2,.8,.2,1); }
+    .wipe.in { clip-path: inset(0); }
+
+    /* 01 封面 */
+    .cover { color: #3d2922; background: #d8c6af; }
+    .cover-photo {
+      position: absolute;
+      inset: -2%;
+      width: 104%;
+      height: 104%;
+      object-fit: cover;
+      animation: coverPush 11s ease-in-out infinite alternate;
+    }
+    .cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(255,250,241,.08), transparent 58%, rgba(27,15,11,.34));
+      pointer-events: none;
+    }
+    .cover-copy { position: absolute; z-index: 4; top: 14%; left: 7%; width: 82%; }
+    .cover-copy .small { font: 700 10px/1 Georgia, serif; letter-spacing: .22em; }
+    .cover-copy h1 { margin: 16px 0 0; font: 500 clamp(42px, 13vw, 66px)/.88 Georgia, serif; letter-spacing: .035em; }
+    .cover-copy h1 em { display: block; margin-bottom: 6px; color: var(--wine); font-size: .48em; font-weight: 400; }
+    .cover-invite {
+      position: absolute;
+      z-index: 4;
+      left: 7%;
+      bottom: 6%;
+      padding-top: 9px;
+      border-top: 1px solid rgba(255,255,255,.78);
+      color: white;
+      text-shadow: 0 2px 10px rgba(35,17,12,.54);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+    .petals { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+    .petals i { position: absolute; top: -8%; width: 9px; height: 14px; border-radius: 70% 15% 70% 15%; background: rgba(255,255,255,.9); animation: petal 7.5s linear infinite; }
+    .petals i:nth-child(1){left:8%;animation-delay:-2s}.petals i:nth-child(2){left:24%;animation-delay:-5s;scale:.7}.petals i:nth-child(3){left:42%;animation-delay:-.6s}.petals i:nth-child(4){left:61%;animation-delay:-4s;scale:.8}.petals i:nth-child(5){left:79%;animation-delay:-1.5s}.petals i:nth-child(6){left:92%;animation-delay:-6s;scale:.65}
+    .scroll-cue { position: absolute; z-index: 4; right: 6%; bottom: 5%; color: white; font: 9px/1 Georgia, serif; letter-spacing: .16em; writing-mode: vertical-rl; }
+    .scroll-cue::after { content: ""; display: block; width: 1px; height: 34px; margin: 8px auto 0; background: currentColor; animation: cue 1.8s ease-in-out infinite; }
+
+    /* 封面與新人頁之間的邀請轉場：保留照片原始直式比例 */
+    .invitation-note { min-height: auto; padding: 94px 24px 72px; background: #f8eee1; }
+    .invite-title { position: relative; z-index: 4; margin: 0 0 -24px 5px; color: #9f352f; }
+    .invite-title small { display: block; margin: 0 0 12px 8px; color: rgba(46,39,35,.62); font: 700 10px/1 Georgia, serif; letter-spacing: .24em; }
+    .invite-title h2 { width: max-content; margin: 0; font-family: "ChenYuluoyan Invite", cursive; font-size: 58px; font-weight: 400; line-height: .9; letter-spacing: .015em; transform: rotate(-4deg); }
+    .invite-title h2 span { display: block; }
+    .invite-title h2 em { display: block; width: max-content; margin: 15px 0 0 62px; color: inherit; font-size: 1.05em; font-style: normal; letter-spacing: .04em; transform: rotate(3deg); }
+    .invite-title::after { content: "OUR WEDDING"; position: absolute; left: 238px; top: 70px; color: rgba(46,39,35,.62); font: 700 9px/1.4 Georgia, serif; letter-spacing: .18em; white-space: nowrap; transform: rotate(-1deg); }
+    .invite-title small, .invite-title h2 span, .invite-title h2 em, .invite-title::after { opacity: 0; translate: -7px 7px; }
+    .invite-title.in small { animation: inviteInk .46s .08s ease-out both; }
+    .invite-title.in h2 span { animation: inviteInk .64s .2s cubic-bezier(.2,.8,.2,1) both; }
+    .invite-title.in h2 em { animation: inviteInk .64s .38s cubic-bezier(.2,.8,.2,1) both; }
+    .invite-title.in::after { animation: inviteInk .45s .64s ease-out both; }
+    .invite-pair { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+    .invite-pair::before { content: ""; position: absolute; z-index: 3; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,.85); transform: translateX(-50%); }
+    .invite-pair figure { position: relative; margin: 0; overflow: hidden; background: #d9ccbb; box-shadow: 0 16px 30px rgba(68,45,31,.12); }
+    .invite-pair figure.reveal { transform: translateY(28px) scale(.985); transition-duration: .82s; }
+    .invite-pair figure.reveal:nth-child(2) { transition-delay: .13s; }
+    .invite-pair figure.reveal.in { transform: none; }
+    .invite-pair figure:last-child { margin-top: 34px; }
+    .invite-pair img { width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: contain; background: #d9ccbb; transform: scale(1.018); transition: transform 1.15s cubic-bezier(.2,.8,.2,1); }
+    .invite-pair figure.in img { transform: scale(1); }
+    .invite-pair figcaption { position: absolute; right: 9px; bottom: 10px; color: white; text-shadow: 0 2px 8px rgba(0,0,0,.48); font: italic 10px/1 Georgia, serif; letter-spacing: .12em; writing-mode: vertical-rl; }
+    .invite-footer { position: relative; margin: 24px 2px 0; padding-top: 15px; border-top: 1px solid rgba(46,39,35,.24); }
+    .invite-footer p { max-width: 310px; margin: 0; color: rgba(46,39,35,.76); font: 15px/1.65 Georgia, "Microsoft JhengHei", serif; }
+    .invite-date { display: block; margin-top: 14px; color: var(--wine); font: 700 12px/1 Georgia, serif; letter-spacing: .2em; }
+
+    /* 02 新人介紹 */
+    .intro {
+      min-height: 760px;
+      padding: 76px 24px 30px;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(226,173,67,.25) 0 9%, transparent 9.5%),
+        radial-gradient(circle at 7% 83%, rgba(232,104,87,.17) 0 11%, transparent 11.5%),
+        #fff8ec;
+    }
+    .intro::before { content: ""; position: absolute; inset: 18px; border: 1px dashed rgba(123,45,53,.32); border-radius: 24px; }
+    .intro-heading { position: relative; z-index: 3; margin-left: 7px; color: #6f3037; transform: rotate(-3deg); }
+    .intro-heading .scene-kicker { color: rgba(46,39,35,.68); }
+    .intro-heading h2 { margin: 9px 0 0; color: #6f3037; font: 500 37px/.95 Georgia, serif; }
+    .intro-heading h2 em { display: block; margin: 6px 0 0 21px; color: #b45549; font-family: "Segoe Print", "Bradley Hand", cursive; font-size: 1.02em; font-weight: 600; }
+    .cutout-wrap { position: absolute; z-index: 2; left: 50%; bottom: 42px; width: 92%; height: 68%; transform: translateX(-50%); }
+    .cutout-wrap::before { content: none; }
+    .cutout-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; filter: drop-shadow(4px 0 #fff8ec) drop-shadow(-4px 0 #fff8ec) drop-shadow(0 4px #fff8ec) drop-shadow(0 -4px #fff8ec) drop-shadow(0 14px 14px rgba(58,33,22,.18)); }
+    .name-tag { position: absolute; z-index: 6; top: 49%; min-width: 88px; padding: 8px 11px 7px; border: 1px solid var(--ink); border-radius: 999px; color: white; background: #6f3037; box-shadow: 4px 4px 0 #ead2bb; text-align: center; animation: tagFloat 2.8s ease-in-out infinite; }
+    .name-tag small { display: block; font: 700 8px/1 Georgia, sans-serif; letter-spacing: .12em; opacity: .82; }
+    .name-tag strong { display: block; margin-top: 4px; color: #fff8ec; font-family: "ChenYuluoyan Invite", cursive; font-size: 22px; font-weight: 400; line-height: 1; letter-spacing: .04em; }
+    .name-tag.groom { left: 17px; transform: rotate(-4deg); }
+    .name-tag.bride { right: 17px; top: 53%; background: #b45549; transform: rotate(4deg); animation-delay: -.9s; }
+    .name-tag.groom.reveal { transform: rotate(-4deg) translateY(20px) scale(.84); transition: opacity .55s ease .28s, transform .65s cubic-bezier(.18,1.25,.42,1) .28s; }
+    .name-tag.groom.reveal.in { transform: rotate(-4deg); }
+    .name-tag.bride.reveal { transform: rotate(4deg) translateY(20px) scale(.84); transition: opacity .55s ease .46s, transform .65s cubic-bezier(.18,1.25,.42,1) .46s; }
+    .name-tag.bride.reveal.in { transform: rotate(4deg); }
+    .intro-star { position: absolute; z-index: 5; color: var(--gold); font-family: Georgia, serif; animation: twinkle 2.2s ease-in-out infinite; }
+    .intro-star.s1 { top: 23%; right: 42px; font-size: 33px; }
+    .intro-star.s2 { top: 38%; left: 41px; color: var(--coral); font-size: 21px; animation-delay: -.8s; }
+
+    /* 照片敘事場景 */
+    .photo-scene > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: sceneDrift 12s ease-in-out infinite alternate; }
+    .photo-scene::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, transparent 47%, rgba(25,14,10,.53)); }
+    .photo-caption { position: absolute; z-index: 3; left: 7%; right: 7%; bottom: 7%; color: white; text-shadow: 0 2px 12px rgba(22,11,8,.5); }
+    .photo-caption .line { width: 46px; height: 1px; margin-bottom: 14px; background: currentColor; }
+    .photo-caption h2 { margin: 0; font-family: "PMingLiU", serif; font-size: 34px; font-weight: 500; letter-spacing: .08em; }
+    .photo-caption p { margin: 9px 0 0; font: italic 12px/1.4 Georgia, serif; letter-spacing: .08em; }
+    .quiet > img { object-position: 52% center; }
+
+    /* 草地連續系列：保留照片原始長方形，以留白與文字建立節奏 */
+    .grass-series { position: relative; padding-bottom: 0; overflow: hidden; color: #354435; background: #fbf7ef; }
+    .grass-intro { display: grid; align-content: center; padding: 70px 30px 44px; background: #fbf7ef; }
+    .grass-intro h2 { margin: 14px 0 0; color: #8f3937; font: italic 500 48px/.94 Georgia, serif; }
+    .grass-intro p { max-width: 320px; margin: 22px 0 0; color: rgba(46,57,43,.72); font: 15px/1.7 Georgia, serif; }
+    .series-marker { margin: 0 30px; padding-top: 18px; border-top: 1px solid rgba(53,68,53,.28); color: rgba(53,68,53,.62); font: 700 10px/1 Georgia, serif; letter-spacing: .2em; }
+    .grass-panel { position: relative; min-height: auto; padding: 48px 28px; }
+    .grass-panel + .grass-panel { border-top: 1px solid rgba(53,68,53,.14); }
+    .grass-index { display: block; margin-bottom: 22px; color: rgba(53,68,53,.58); font: 11px/1 Georgia, serif; letter-spacing: .19em; }
+    .grass-panel figure { margin: 0; }
+    .grass-panel img { display: block; width: 100%; height: auto; }
+    .grass-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+    .grass-duo figure:nth-child(2) { margin-top: 32px; }
+    .grass-photo-label { display: flex; justify-content: space-between; gap: 8px; margin-top: 10px; color: rgba(53,68,53,.66); font: 9px/1.35 Georgia, serif; letter-spacing: .12em; }
+    .grass-text { max-width: 330px; margin: 34px auto 0; text-align: center; }
+    .grass-text strong { display: block; color: #9f352f; font-family: "Segoe Print", "Bradley Hand", cursive; font-size: 29px; font-style: italic; font-weight: 600; line-height: 1.1; }
+    .grass-text span { display: block; margin-top: 14px; color: rgba(53,68,53,.67); font: 11px/1.7 Georgia, serif; letter-spacing: .12em; }
+    .grass-intro .scene-kicker.reveal { transform: translateY(18px); transition-delay: .02s; }
+    .grass-intro h2.reveal { transform: translateX(-34px); transition-duration: 1.05s; transition-delay: .1s; }
+    .grass-intro p.reveal { transform: translateY(24px); transition-delay: .22s; }
+    .series-marker.reveal, .grass-index.reveal { transform: translateX(-26px); transition-delay: .04s; }
+    .grass-intro .scene-kicker.reveal.in, .grass-intro h2.reveal.in, .grass-intro p.reveal.in,
+    .series-marker.reveal.in, .grass-index.reveal.in { transform: none; }
+    .grass-duo figure.reveal { transform: translateY(34px) scale(.97); transition-duration: 1s; }
+    .grass-duo figure:nth-child(2).reveal { transition-delay: .16s; }
+    .grass-duo figure.reveal.in { transform: none; }
+    .grass-text strong.reveal { transform: translateY(20px) rotate(-2deg); transition: opacity .75s ease .06s, transform .9s cubic-bezier(.2,.8,.2,1) .06s; }
+    .grass-text strong.reveal.in { transform: rotate(-2deg); }
+    .grass-text span.reveal { transform: translateY(14px); transition-delay: .3s; }
+    .grass-finale { padding-top: 58px; padding-bottom: 54px; background: #eee4d8; }
+    .warm-heading { position: relative; z-index: 3; width: 80%; margin: 0 0 -14px auto; padding: 3px 7px 7px 0; text-align: right; }
+    .warm-heading span { display: block; color: rgba(53,48,42,.66); font: 10px/1.4 Georgia, serif; letter-spacing: .17em; }
+    .warm-heading strong { display: block; margin-top: 10px; color: #8f3937; font-family: "Segoe Print", "Bradley Hand", cursive; font-size: 31px; font-style: italic; font-weight: 600; line-height: 1.04; }
+    .warm-heading::after { content: ""; display: block; width: 56px; height: 1px; margin: 16px 2px 0 auto; background: #bd916e; transform: rotate(-4deg); }
+    .warm-collage { position: relative; }
+    .warm-photo-main { width: 72%; margin: 0 auto 0 0 !important; transform-origin: center; }
+    .warm-photo-detail { position: relative; z-index: 2; width: 72%; margin: 38px 0 0 auto !important; border: 9px solid #eee4d8; box-shadow: 0 18px 32px rgba(74,50,37,.13); }
+    .warm-note { position: absolute; z-index: 4; right: 0; top: 96px; width: 42%; padding: 15px 13px; color: #5c4940; background: rgba(255,250,242,.93); box-shadow: 0 12px 25px rgba(74,50,37,.12); font: 10px/1.65 Georgia, serif; letter-spacing: .11em; }
+    .warm-photo-detail figcaption { position: absolute; right: -5px; bottom: 18px; padding: 8px 10px; color: white; background: rgba(123,45,53,.82); font: 700 9px/1 Georgia, serif; letter-spacing: .14em; }
+    .warm-heading span { opacity: 0; translate: 22px 8px; transition: opacity .65s ease .12s, translate .8s cubic-bezier(.2,.8,.2,1) .12s; }
+    .warm-heading strong { opacity: 0; translate: 28px 9px; transition: opacity .72s ease .2s, translate 1.05s cubic-bezier(.2,.8,.2,1) .2s; }
+    .warm-heading::after { opacity: 0; transform: rotate(-4deg) scaleX(0); transform-origin: right; transition: opacity .5s ease .54s, transform .8s cubic-bezier(.2,.8,.2,1) .54s; }
+    .warm-heading.reveal { transform: translateX(42px); transition-duration: 1.05s; transition-delay: .03s; }
+    .warm-heading.reveal.in { transform: none; }
+    .warm-heading.reveal.in span { opacity: 1; translate: 0 0; }
+    .warm-heading.reveal.in strong { opacity: 1; translate: 0 0; }
+    .warm-heading.reveal.in::after { opacity: 1; transform: rotate(-4deg) scaleX(1); }
+    .warm-photo-main.reveal { transform: translateX(-36px) rotate(-1.4deg); transition-delay: .06s; }
+    .warm-photo-main.reveal.in { transform: rotate(-1.4deg); }
+    .warm-note.reveal { transform: translateY(22px) scale(.94); transition-delay: .2s; }
+    .warm-note.reveal.in { transform: none; }
+    .warm-photo-detail.reveal { transform: translateX(36px) rotate(1.2deg); transition-delay: .12s; }
+    .warm-photo-detail.reveal.in { transform: rotate(1.2deg); }
+
+    /* 婚宴資訊：中文為主，日期、時間、地點一次讀完 */
+    .event { min-height: auto; padding: 72px 24px; background: #fbf5eb; font-family: "Noto Serif TC", "Microsoft JhengHei", serif; }
+    .event-head { text-align: center; }
+    .event-head h2 { margin: 10px 0 0; color: var(--wine); font-family: inherit; font-size: 39px; font-weight: 600; line-height: 1.35; letter-spacing: .15em; }
+    .event-head p { margin: 13px 0 0; color: rgba(46,39,35,.84); font: 500 14px/1.7 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .04em; }
+    .event-overview { display: grid; grid-template-columns: repeat(3, 1fr); margin: 34px 0 24px; padding: 24px 0 22px; border-top: 1px solid rgba(62,50,42,.3); border-bottom: 1px solid rgba(62,50,42,.3); }
+    .event-fact { position: relative; min-width: 0; padding: 0 8px; text-align: center; }
+    .event-fact + .event-fact { border-left: 1px solid rgba(62,50,42,.26); }
+    .event-fact svg { width: 29px; height: 29px; margin-bottom: 12px; fill: none; stroke: #756056; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.45; }
+    .event-fact .fact-label { display: block; margin-bottom: 7px; color: #53463f; font: 600 12px/1.3 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .13em; }
+    .event-fact strong { display: block; color: #352b26; font: 600 15px/1.45 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .03em; }
+    .event-fact.time strong { color: var(--wine); font-size: 18px; }
+    .event-fact small { display: block; margin-top: 5px; color: #675851; font: 500 11px/1.45 "Noto Serif TC", "Microsoft JhengHei", serif; }
+    .calendar-card, .venue-card { border: 1px solid rgba(62,50,42,.16); border-radius: 24px; background: rgba(255,255,255,.74); box-shadow: 0 18px 35px rgba(80,55,39,.08); }
+    .calendar-card { padding: 20px 19px 18px; }
+    .calendar-top { display: flex; justify-content: space-between; margin-bottom: 15px; font: 600 13px/1 "Noto Serif TC", serif; letter-spacing: .08em; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; text-align: center; font: 12px/30px "Noto Serif TC", serif; }
+    .calendar-grid b { color: rgba(46,39,35,.68); font-size: 11px; font-weight: 500; }
+    .calendar-grid .muted { color: rgba(46,39,35,.25); }
+    .calendar-grid .selected { width: 30px; height: 30px; margin: auto; border-radius: 50%; color: white; background: var(--wine); box-shadow: 0 0 0 5px rgba(123,45,53,.12); }
+    .venue-card { margin-top: 16px; overflow: hidden; }
+    .mini-map { position: relative; height: 210px; overflow: hidden; background: #dfe6dc; }
+    .road { position: absolute; height: 12px; background: #f8f4ec; box-shadow: 0 0 0 1px rgba(83,96,79,.12); transform-origin: left center; }
+    .road.r1 { width: 560px; left: -40px; top: 72px; transform: rotate(13deg); }
+    .road.r2 { width: 420px; left: 95px; top: -25px; transform: rotate(77deg); }
+    .road.r3 { width: 430px; left: -80px; top: 166px; transform: rotate(-20deg); }
+    .map-pin { position: absolute; z-index: 3; left: 58%; top: 46%; width: 42px; height: 42px; display: grid; place-items: center; border: 5px solid #fff; border-radius: 50% 50% 50% 0; color: white; background: var(--wine); box-shadow: 0 8px 18px rgba(63,42,34,.24); font: 700 15px/1 Georgia, serif; transform: rotate(-45deg); }
+    .map-pin span { transform: rotate(45deg); }
+    .map-label { position: absolute; z-index: 2; padding: 5px 7px; color: #556251; background: rgba(255,255,255,.75); font: 10px/1 "Noto Serif TC", serif; letter-spacing: .07em; }
+    .map-label.one { left: 25px; top: 25px; }.map-label.two { right: 22px; bottom: 21px; }
+    .venue-copy { padding: 20px; }
+    .venue-copy h3 { margin: 0; font: 600 23px/1.3 "Noto Serif TC", serif; letter-spacing: .06em; }
+    .venue-copy p { margin: 9px 0 0; color: rgba(46,39,35,.62); font: 13px/1.7 "Noto Serif TC", serif; }
+    .event-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+    .event-actions a, .event-actions button { min-height: 48px; display: grid; place-items: center; padding: 0 14px; border: 1px solid var(--wine); border-radius: 999px; color: var(--wine); background: transparent; font: 600 12px/1.2 "Noto Serif TC", serif; letter-spacing: .1em; text-align: center; text-decoration: none; cursor: pointer; }
+    .event-actions button:last-child { color: white; background: var(--wine); }
+
+    /* 音樂控制 */
+    .music-toggle { position: fixed; z-index: 120; right: max(16px, calc((100vw - 480px)/2 + 16px)); bottom: max(18px, env(safe-area-inset-bottom)); width: 58px; height: 58px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.62); border-radius: 50%; color: white; background: rgba(123,45,53,.9); box-shadow: 0 10px 28px rgba(55,31,27,.28); backdrop-filter: blur(10px); cursor: pointer; }
+    .music-toggle .note { font: 22px/1 Georgia, serif; }
+    .music-toggle .bars { position: absolute; bottom: 9px; display: flex; align-items: end; gap: 2px; height: 8px; }
+    .music-toggle .bars i { width: 2px; height: 3px; background: white; }
+    .music-toggle.playing .bars i { animation: soundBars .65s ease-in-out infinite alternate; }
+    .music-toggle.playing .bars i:nth-child(2) { animation-delay: -.3s; }.music-toggle.playing .bars i:nth-child(3) { animation-delay: -.5s; }
+    .toast { position: fixed; z-index: 130; left: 50%; bottom: 88px; width: min(calc(100% - 44px), 390px); padding: 13px 17px; border-radius: 14px; color: white; background: rgba(36,28,24,.88); opacity: 0; pointer-events: none; text-align: center; font-size: 13px; transform: translate(-50%, 12px); transition: .3s ease; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* 轉場與結尾 */
+    .ending { display: grid; align-content: center; padding: 90px 24px 70px; color: #f8efe5; background: #1f1a17; }
+    .ending-photo { position: relative; margin: 0; }
+    .ending-photo img { width: 100%; aspect-ratio: 3/2; object-fit: cover; box-shadow: 0 24px 45px rgba(0,0,0,.35); }
+    .ending-copy { margin-top: 28px; text-align: center; }
+    .ending-copy .script { display: block; color: #d9b89c; font: italic 23px/1 Georgia, serif; }
+    .ending-copy h2 { margin: 10px 0 0; font: 400 39px/1 Georgia, serif; letter-spacing: .05em; }
+    .ending-copy p { margin: 15px 0 0; color: rgba(255,255,255,.64); font-size: 12px; letter-spacing: .12em; }
+
+    @keyframes coverPush { from { transform: scale(1); } to { transform: scale(1.045); } }
+    @keyframes sceneDrift { from { transform: scale(1); } to { transform: scale(1.035); } }
+    @keyframes petal { 0%{translate:0 -30px;rotate:0;opacity:0}12%{opacity:.95}50%{translate:28px 48svh;rotate:170deg}100%{translate:-18px 105svh;rotate:360deg;opacity:0} }
+    @keyframes cue { 0%,100%{scale:1 0;transform-origin:top}50%{scale:1 1;transform-origin:top} }
+    @keyframes tagFloat { 0%,100%{translate:0 0}50%{translate:0 -5px} }
+    @keyframes twinkle { 0%,100%{scale:.8;opacity:.45}50%{scale:1.12;opacity:1} }
+    @keyframes soundBars { from { height: 2px; } to { height: 8px; } }
+    @keyframes inviteInk { from { opacity: 0; translate: -7px 7px; } to { opacity: 1; translate: 0 0; } }
+
+    @media (min-width: 700px) { body { padding-block: 20px; } .story { border-radius: 30px; } }
+    @media (max-width: 420px) {
+      .name-tag { min-width: 80px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
+      .wipe { clip-path: none; }
+      .invite-title small, .invite-title h2 span, .invite-title h2 em, .invite-title::after { opacity: 1; translate: none; }
+      .invite-pair img { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <button class="music-toggle" id="musicToggle" type="button" aria-label="Play background music" aria-pressed="false">
+    <span class="note" aria-hidden="true">♫</span><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <main class="story">
+    <section class="scene cover" aria-label="喜帖封面">
+      <img class="cover-photo" src="assets/rvnk6871-hero.jpg" alt="詹咏朋抱著連怡蘭，兩人在戶外婚禮場景中相視微笑" fetchpriority="high" decoding="async">
+      <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="cover-copy">
+        <div class="small">WEDDING INVITATION</div>
+        <h1><em>We’re getting</em>MARRIED</h1>
+      </div>
+      <div class="cover-invite">A DAY TO REMEMBER</div>
+      <div class="scroll-cue">SCROLL</div>
+    </section>
+
+    <section class="scene invitation-note" aria-label="婚禮邀請">
+      <header class="invite-title reveal">
+        <small>WELCOME TO</small>
+        <h2 aria-label="我們的婚禮"><span aria-hidden="true">我們的</span><em aria-hidden="true">婚禮</em></h2>
+      </header>
+      <div class="invite-pair">
+        <figure class="reveal"><img src="assets/cwqc6584-invite.jpg" alt="穿著白色西裝與婚紗的新郎新娘在小洋樓與白色禮車前歡呼" loading="lazy" decoding="async"><figcaption>JOY IN THE AIR</figcaption></figure>
+        <figure class="reveal"><img src="assets/vkvl8681-invite.jpg" alt="穿著白色西裝與婚紗的新郎新娘躲在花藝後開心合照" loading="lazy" decoding="async"><figcaption>HAPPY TOGETHER</figcaption></figure>
+      </div>
+      <div class="invite-footer reveal">
+        <p>We would love for you to be part of our day.</p>
+        <span class="invite-date">2026 · 11 · 14</span>
+      </div>
+    </section>
+
+    <section class="scene intro" aria-label="新人介紹">
+      <div class="intro-heading reveal">
+        <div class="scene-kicker">THE TWO OF US</div>
+        <h2>Hello, it’s<em>us!</em></h2>
+      </div>
+      <div class="cutout-wrap reveal">
+        <img src="assets/bgcv0956-cutout-v1.png" alt="新郎詹咏朋與新娘連怡蘭的去背婚紗合照" loading="lazy" decoding="async">
+      </div>
+      <span class="intro-star s1" aria-hidden="true">✦</span><span class="intro-star s2" aria-hidden="true">✦</span>
+      <div class="name-tag groom reveal"><small>GROOM</small><strong>詹咏朋</strong></div>
+      <div class="name-tag bride reveal"><small>BRIDE</small><strong>連怡蘭</strong></div>
+    </section>
+
+    <section class="grass-series" id="grass-story" aria-label="婚紗故事連續組照">
+      <header class="grass-intro">
+        <div class="scene-kicker reveal">THE BEGINNING OF ALWAYS</div>
+        <h2 class="reveal">Our forever<br>begins here</h2>
+        <p class="reveal">Two hearts, one promise, and a lifetime waiting to unfold.</p>
+      </header>
+      <div class="series-marker reveal">OUR STORY</div>
+      <article class="grass-panel">
+        <span class="grass-index reveal">TOGETHER, FROM THIS DAY</span>
+        <div class="grass-duo">
+          <figure class="reveal"><img src="assets/ring-closeup-story.jpg" alt="新娘展示戒指並與新郎一同微笑" loading="lazy" decoding="async"><figcaption class="grass-photo-label"><span>WITH ALL MY HEART</span></figcaption></figure>
+          <figure class="reveal"><img src="assets/mhae4062-story.jpg" alt="新郎新娘在草地上開香檳慶祝" loading="lazy" decoding="async"><figcaption class="grass-photo-label"><span>CHEERS TO US</span></figcaption></figure>
+        </div>
+        <div class="grass-text"><strong class="reveal">Here begins our forever.</strong><span class="reveal">HAND IN HAND, HEART TO HEART.</span></div>
+      </article>
+      <article class="grass-panel grass-finale">
+        <div class="warm-heading reveal">
+          <span>IN EVERY LITTLE MOMENT</span>
+          <strong>Wherever<br>you are.</strong>
+        </div>
+        <div class="warm-collage">
+          <figure class="warm-photo-main reveal"><img src="assets/rfvj7409-story.jpg" alt="新郎新娘在暖色花藝室內自然互動" loading="lazy" decoding="async"></figure>
+          <div class="warm-note reveal">THAT'S WHERE<br>I WANT TO BE.</div>
+          <figure class="warm-photo-detail reveal"><img src="assets/mkdj2016-story.jpg" alt="新郎新娘在暖色花藝室內依偎相視" loading="lazy" decoding="async"><figcaption>YOU, ALWAYS</figcaption></figure>
+        </div>
+      </article>
+    </section>
+
+    <section class="scene event" id="event" aria-label="婚宴日期與地點">
+      <header class="event-head reveal">
+        <div class="scene-kicker">WEDDING INFORMATION</div>
+        <h2>婚宴資訊</h2>
+        <p>誠摯邀請您，與我們共享這一天</p>
+      </header>
+      <div class="event-overview reveal" aria-label="婚宴日期、時間與地點">
+        <div class="event-fact">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="7" width="22" height="20" rx="2"></rect><path d="M10 4v6M22 4v6M5 13h22"></path><path d="M11 18h2M16 18h2M21 18h2M11 22h2M16 22h2"></path></svg>
+          <span class="fact-label">日期</span>
+          <strong>2026.11.14</strong>
+          <small>星期六</small>
+        </div>
+        <div class="event-fact time">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"></circle><path d="M16 9v8l5 3"></path></svg>
+          <span class="fact-label">時間</span>
+          <strong>中午 12:00</strong>
+          <small>婚宴時間</small>
+        </div>
+        <div class="event-fact">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M25 14c0 7-9 14-9 14S7 21 7 14a9 9 0 1 1 18 0Z"></path><circle cx="16" cy="14" r="3"></circle></svg>
+          <span class="fact-label">地點</span>
+          <strong>臺中林酒店</strong>
+        </div>
+      </div>
+      <div class="calendar-card reveal">
+        <div class="calendar-top"><span>2026年11月</span><span>婚宴日期</span></div>
+        <div class="calendar-grid" aria-label="2026年11月婚宴日曆">
+          <b>一</b><b>二</b><b>三</b><b>四</b><b>五</b><b>六</b><b>日</b>
+          <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span>1</span>
+          <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+          <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span class="selected">14</span><span>15</span>
+          <span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span>
+          <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+          <span>30</span><span class="muted">1</span><span class="muted">2</span><span class="muted">3</span><span class="muted">4</span><span class="muted">5</span><span class="muted">6</span>
+        </div>
+      </div>
+      <div class="venue-card reveal">
+        <div class="mini-map" aria-label="臺中林酒店位置示意">
+          <span class="road r1"></span><span class="road r2"></span><span class="road r3"></span>
+          <span class="map-label one">朝富路</span><span class="map-label two">臺灣大道</span>
+          <span class="map-pin"><span>♥</span></span>
+        </div>
+        <div class="venue-copy"><h3>臺中林酒店</h3><p>臺中市西屯區朝富路99號（臺灣大道路口）</p></div>
+      </div>
+      <div class="event-actions reveal">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=%E8%87%BA%E4%B8%AD%E6%9E%97%E9%85%92%E5%BA%97%20%E8%87%BA%E4%B8%AD%E5%B8%82%E8%A5%BF%E5%B1%AF%E5%8D%80%E6%9C%9D%E5%AF%8C%E8%B7%AF99%E8%99%9F" target="_blank" rel="noopener noreferrer" aria-label="在 Google 地圖開啟臺中林酒店">開啟地圖</a>
+        <button type="button" data-demo="行事曆功能將在婚宴流程確認後開放。">加入行事曆</button>
+      </div>
+    </section>
+
+    <section class="scene ending" id="ending" aria-label="喜帖結尾">
+      <figure class="ending-photo"><img src="assets/wwxa2790-story.jpg" alt="新郎新娘在逆光門邊親吻，婚紗裙擺飄動" loading="lazy" decoding="async"></figure>
+      <div class="ending-copy reveal"><span class="script">To be continued</span><h2>And so the adventure begins</h2><p>THANK YOU FOR BEING PART OF OUR DAY</p></div>
+    </section>
+  </main>
+
+  <script>
+    /* 降低一般使用者以右鍵、長按或拖曳另存照片的可能。 */
+    document.querySelectorAll('img').forEach((image) => image.setAttribute('draggable', 'false'));
+    document.addEventListener('contextmenu', (event) => event.preventDefault());
+    document.addEventListener('dragstart', (event) => {
+      if (event.target instanceof HTMLImageElement) event.preventDefault();
+    });
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+        } else if (!reduceMotion.matches) {
+          entry.target.classList.remove('in');
+        }
+      });
+    }, { threshold: 0.16, rootMargin: '-4% 0px -10%' });
+    document.querySelectorAll('.reveal, .wipe').forEach((el) => observer.observe(el));
+
+    /* 婚貝式慢速自動捲動：使用者介入時暫停，閒置後再接續。 */
+    const autoScroll = {
+      speed: 43,
+      pauseUntil: performance.now() + 2600,
+      lastFrame: 0,
+      remainder: 0,
+      enabled: !reduceMotion.matches
+    };
+    function pauseAutoScroll(duration = 7000) {
+      autoScroll.pauseUntil = performance.now() + duration;
+      autoScroll.lastFrame = 0;
+    }
+    function autoScrollFrame(now) {
+      if (!autoScroll.enabled || document.hidden || now < autoScroll.pauseUntil) {
+        autoScroll.lastFrame = now;
+        window.requestAnimationFrame(autoScrollFrame);
+        return;
+      }
+      const scroller = document.scrollingElement;
+      const atBottom = scroller.scrollTop + window.innerHeight >= scroller.scrollHeight - 2;
+      if (!atBottom) {
+        const elapsed = Math.min(now - (autoScroll.lastFrame || now), 64);
+        autoScroll.remainder += autoScroll.speed * elapsed / 1000;
+        const wholePixels = Math.floor(autoScroll.remainder);
+        if (wholePixels > 0) {
+          scroller.scrollTop += wholePixels;
+          autoScroll.remainder -= wholePixels;
+        }
+      }
+      autoScroll.lastFrame = now;
+      window.requestAnimationFrame(autoScrollFrame);
+    }
+    ['wheel', 'touchstart', 'touchmove', 'pointerdown'].forEach((eventName) => {
+      window.addEventListener(eventName, () => pauseAutoScroll(), { passive: true });
+    });
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) pauseAutoScroll();
+    });
+    reduceMotion.addEventListener('change', (event) => { autoScroll.enabled = !event.matches; });
+    window.requestAnimationFrame(autoScrollFrame);
+
+    const musicButton = document.getElementById('musicToggle');
+    let audioContext;
+    let musicTimer;
+    let noteIndex = 0;
+    const melody = [261.63, 329.63, 392.00, 493.88, 440.00, 392.00, 329.63, 293.66];
+    function playNote(frequency) {
+      const now = audioContext.currentTime;
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = 'triangle';
+      oscillator.frequency.setValueAtTime(frequency, now);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.035, now + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.35);
+      oscillator.connect(gain).connect(audioContext.destination);
+      oscillator.start(now);
+      oscillator.stop(now + 1.4);
+    }
+    musicButton.addEventListener('click', async () => {
+      if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioContext.state === 'suspended') await audioContext.resume();
+      const isPlaying = musicButton.classList.toggle('playing');
+      musicButton.setAttribute('aria-pressed', String(isPlaying));
+      musicButton.setAttribute('aria-label', isPlaying ? 'Pause background music' : 'Play background music');
+      if (isPlaying) {
+        playNote(melody[noteIndex++ % melody.length]);
+        musicTimer = window.setInterval(() => playNote(melody[noteIndex++ % melody.length]), 820);
+      } else {
+        window.clearInterval(musicTimer);
+      }
+    });
+
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    document.querySelectorAll('[data-demo]').forEach((button) => button.addEventListener('click', () => {
+      toast.textContent = button.dataset.demo;
+      toast.classList.add('show');
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2600);
+    }));
+  </script>
+</body>
+</html>
