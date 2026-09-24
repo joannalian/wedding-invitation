@@ -30,9 +30,21 @@
       --sage: #71806b;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      overscroll-behavior-x: none;
+      scroll-behavior: smooth;
+    }
     body {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
       margin: 0;
+      overflow-x: hidden;
+      overscroll-behavior-x: none;
+      touch-action: pan-y pinch-zoom;
       color: var(--ink);
       background: #d8cdbd;
       font-family: "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
@@ -48,9 +60,11 @@
     }
     .story {
       position: relative;
-      width: min(100%, 480px);
+      width: 100%;
+      max-width: 480px;
       margin-inline: auto;
-      overflow: clip;
+      overflow: hidden;
+      touch-action: pan-y pinch-zoom;
       background: var(--paper);
       box-shadow: 0 0 70px rgba(42,28,20,.22);
     }
@@ -277,7 +291,8 @@
     /* 轉場與結尾 */
     .ending { display: grid; align-content: center; padding: 90px 24px 70px; color: #f8efe5; background: #1f1a17; }
     .ending-photo { position: relative; margin: 0; }
-    .ending-photo img { width: 100%; aspect-ratio: 3/2; object-fit: cover; box-shadow: 0 24px 45px rgba(0,0,0,.35); }
+    .ending-photo picture { display: block; }
+    .ending-photo img { width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; box-shadow: 0 24px 45px rgba(0,0,0,.35); }
     .ending-copy { margin-top: 28px; text-align: center; }
     .ending-copy .script { display: block; color: #d9b89c; font: italic 23px/1 Georgia, serif; }
     .ending-copy h2 { margin: 10px 0 0; font: 400 39px/1 Georgia, serif; letter-spacing: .05em; }
@@ -443,26 +458,37 @@
     });
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const observer = new IntersectionObserver((entries) => {
+    /*
+      進場與重播使用不同的觀察範圍。元素剛進入畫面時的位移不會再
+      立刻讓它跨回同一條門檻，避免手機慢速捲動時反覆加減 .in 而跳動。
+    */
+    const enterObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-        } else if (!reduceMotion.matches) {
+        if (entry.isIntersecting) entry.target.classList.add('in');
+      });
+    }, { threshold: 0.12, rootMargin: '-4% 0px -8%' });
+    const resetObserver = new IntersectionObserver((entries) => {
+      if (reduceMotion.matches) return;
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting && entry.target.classList.contains('in')) {
           entry.target.classList.remove('in');
         }
       });
-    }, { threshold: 0.16, rootMargin: '-4% 0px -10%' });
-    document.querySelectorAll('.reveal, .wipe').forEach((el) => observer.observe(el));
+    }, { threshold: 0, rootMargin: '22% 0px 22%' });
+    document.querySelectorAll('.reveal, .wipe').forEach((el) => {
+      enterObserver.observe(el);
+      resetObserver.observe(el);
+    });
 
     /* 婚貝式慢速自動捲動：使用者介入時暫停，閒置後再接續。 */
     const autoScroll = {
-      speed: 43,
-      pauseUntil: performance.now() + 2600,
+      speed: 50,
+      pauseUntil: performance.now() + 1200,
       lastFrame: 0,
       remainder: 0,
       enabled: !reduceMotion.matches
     };
-    function pauseAutoScroll(duration = 7000) {
+    function pauseAutoScroll(duration = 2800) {
       autoScroll.pauseUntil = performance.now() + duration;
       autoScroll.lastFrame = 0;
     }
