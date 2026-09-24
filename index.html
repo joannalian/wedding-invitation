@@ -544,10 +544,8 @@
       <h2 id="calendarTitle">加入行事曆</h2>
       <p>2026.11.14　中午 12:00–15:00<br>The Lin 林酒店 3F 世紀廳</p>
       <div class="calendar-options">
-        <a class="primary" id="calendarPrimary" href="#">加入行事曆</a>
-        <a id="calendarSecondary" href="#">其他行事曆</a>
+        <a class="primary" id="calendarPrimary" href="assets/yongpeng-yilan-wedding.ics?v=20260924">加入手機內建行事曆（iOS）</a>
       </div>
-      <p class="calendar-help" id="calendarHelp"></p>
       <button class="calendar-close" id="calendarClose" type="button">稍後再說</button>
     </div>
   </div>
@@ -857,29 +855,6 @@
     const calendarSheet = document.getElementById('calendarSheet');
     const calendarClose = document.getElementById('calendarClose');
     const calendarPrimary = document.getElementById('calendarPrimary');
-    const calendarSecondary = document.getElementById('calendarSecondary');
-    const calendarHelp = document.getElementById('calendarHelp');
-    const nativeCalendarUrl = 'assets/yongpeng-yilan-wedding.ics?v=20260924';
-    const googleCalendarWebUrl = 'google-calendar.html?v=20260924';
-    const isAppleDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    if (isAppleDevice) {
-      calendarPrimary.href = nativeCalendarUrl;
-      calendarPrimary.textContent = '加入 Apple／內建行事曆';
-      calendarSecondary.href = googleCalendarWebUrl;
-      calendarSecondary.target = '_blank';
-      calendarSecondary.rel = 'noopener noreferrer';
-      calendarSecondary.textContent = '改用 Google 行事曆（瀏覽器）';
-      calendarHelp.textContent = 'Google 版本會留在瀏覽器中開啟，以免 App 只開首頁而漏掉活動資料。';
-    } else {
-      calendarPrimary.href = googleCalendarWebUrl;
-      calendarPrimary.target = '_blank';
-      calendarPrimary.rel = 'noopener noreferrer';
-      calendarPrimary.textContent = '加入 Google 行事曆（瀏覽器）';
-      calendarSecondary.href = nativeCalendarUrl;
-      calendarSecondary.download = '咏朋&怡蘭-婚宴.ics';
-      calendarSecondary.textContent = '加入手機內建行事曆（.ics）';
-      calendarHelp.textContent = 'Google 版本會留在瀏覽器中開啟；也可改用下方的手機內建行事曆。';
-    }
     function closeCalendarSheet() {
       calendarSheet.hidden = true;
       calendarButton.focus({ preventScroll: true });
@@ -895,9 +870,9 @@
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && !calendarSheet.hidden) closeCalendarSheet();
     });
-    [calendarPrimary, calendarSecondary].forEach((link) => link.addEventListener('click', () => {
+    calendarPrimary.addEventListener('click', () => {
       window.setTimeout(() => { calendarSheet.hidden = true; }, 250);
-    }));
+    });
     document.querySelectorAll('[data-demo]').forEach((button) => button.addEventListener('click', () => {
       toast.textContent = button.dataset.demo;
       toast.classList.add('show');
