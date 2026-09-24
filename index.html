@@ -860,10 +860,12 @@
     const calendarSecondary = document.getElementById('calendarSecondary');
     const calendarHelp = document.getElementById('calendarHelp');
     const nativeCalendarUrl = 'assets/yongpeng-yilan-wedding.ics?v=20260924';
-    const googleCalendarUrl = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
+    const googleCalendarUrl = 'https://calendar.google.com/calendar/r/eventedit?' + new URLSearchParams({
       action: 'TEMPLATE',
       text: '💍 咏朋&怡蘭 婚宴',
       dates: '20261114T040000Z/20261114T070000Z',
+      stz: 'Asia/Taipei',
+      etz: 'Asia/Taipei',
       details: '誠摯邀請您，與我們共享這一天。婚宴時間：中午 12:00。',
       location: 'The Lin 林酒店 3F 世紀廳，臺中市西屯區朝富路99號'
     }).toString();
@@ -874,17 +876,17 @@
       calendarSecondary.href = googleCalendarUrl;
       calendarSecondary.target = '_blank';
       calendarSecondary.rel = 'noopener noreferrer';
-      calendarSecondary.textContent = '改用 Google 行事曆';
-      calendarHelp.textContent = '若 LINE 內無法加入，請使用右下角選單改以 Safari 開啟。';
+      calendarSecondary.textContent = '改用 Google 行事曆（網頁）';
+      calendarHelp.textContent = '若 Google 開啟空白活動，請返回改用 Apple／內建行事曆。';
     } else {
       calendarPrimary.href = googleCalendarUrl;
       calendarPrimary.target = '_blank';
       calendarPrimary.rel = 'noopener noreferrer';
-      calendarPrimary.textContent = '加入 Google 行事曆';
+      calendarPrimary.textContent = '加入 Google 行事曆（網頁）';
       calendarSecondary.href = nativeCalendarUrl;
       calendarSecondary.download = '咏朋&怡蘭-婚宴.ics';
       calendarSecondary.textContent = '加入手機內建行事曆（.ics）';
-      calendarHelp.textContent = 'Android 建議使用 Google 行事曆；也可下載 .ics 交由其他行事曆開啟。';
+      calendarHelp.textContent = '若 Google App 開啟空白活動，請返回改用下方的內建行事曆（.ics）。';
     }
     function closeCalendarSheet() {
       calendarSheet.hidden = true;
