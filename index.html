@@ -100,8 +100,9 @@
       width: 104%;
       height: 104%;
       object-fit: cover;
-      animation: coverPush 11s ease-in-out infinite alternate;
+      transform: scale(1);
     }
+    .story-opened .cover-photo { animation: coverPush 11s ease-in-out .2s infinite alternate; }
     .cover::after {
       content: "";
       position: absolute;
@@ -111,10 +112,14 @@
       pointer-events: none;
     }
     .cover-copy { position: absolute; z-index: 4; top: 14%; left: 7%; width: 82%; }
-    .cover-copy .small { position: relative; display: inline-block; isolation: isolate; color: #3f2226; font: 750 13.5px/1 var(--latin); letter-spacing: .23em; text-shadow: 0 1px rgba(255,255,255,.98), 0 0 7px rgba(255,248,236,.9); }
-    .cover-copy .small::before { content: ""; position: absolute; z-index: -1; inset: -7px -20px -7px -9px; border-radius: 2px; background: linear-gradient(90deg, rgba(255,249,239,.94), rgba(255,249,239,.76) 68%, transparent); box-shadow: 0 0 11px rgba(255,248,236,.58); filter: blur(1.5px); }
+    .cover-copy .small { font: 600 12px/1 var(--latin); letter-spacing: .2em; }
     .cover-copy h1 { margin: 16px 0 0; font: 600 clamp(44px, 13vw, 68px)/.84 var(--latin); letter-spacing: .025em; }
     .cover-copy h1 em { display: block; margin-bottom: 7px; color: var(--wine); font-size: .5em; font-style: italic; font-weight: 500; }
+    .cover-copy h1 span { display: block; }
+    .cover-copy .small, .cover-copy h1 em, .cover-copy h1 span, .cover-invite, .scroll-cue { opacity: 0; transform: translateY(15px); }
+    .story-ready .cover-copy .small { opacity: 1; transform: none; transition: opacity .9s ease .08s, transform 1.05s cubic-bezier(.2,.8,.2,1) .08s; }
+    .story-ready .cover-copy h1 em { opacity: 1; transform: none; transition: opacity .95s ease .3s, transform 1.1s cubic-bezier(.2,.8,.2,1) .3s; }
+    .story-ready .cover-copy h1 span { opacity: 1; transform: none; transition: opacity 1.05s ease .52s, transform 1.2s cubic-bezier(.2,.8,.2,1) .52s; }
     .cover-invite {
       position: absolute;
       z-index: 4;
@@ -130,10 +135,12 @@
       font-style: italic;
       letter-spacing: .12em;
     }
+    .story-ready .cover-invite { opacity: 1; transform: none; transition: opacity .9s ease .8s, transform 1.05s cubic-bezier(.2,.8,.2,1) .8s; }
     .petals { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
     .petals i { position: absolute; top: -8%; width: 9px; height: 14px; border-radius: 70% 15% 70% 15%; background: rgba(255,255,255,.9); animation: petal 7.5s linear infinite; }
     .petals i:nth-child(1){left:8%;animation-delay:-2s}.petals i:nth-child(2){left:24%;animation-delay:-5s;scale:.7}.petals i:nth-child(3){left:42%;animation-delay:-.6s}.petals i:nth-child(4){left:61%;animation-delay:-4s;scale:.8}.petals i:nth-child(5){left:79%;animation-delay:-1.5s}.petals i:nth-child(6){left:92%;animation-delay:-6s;scale:.65}
     .scroll-cue { position: absolute; z-index: 4; right: 6%; bottom: 5%; color: white; font: 600 11px/1 var(--latin); letter-spacing: .16em; writing-mode: vertical-rl; }
+    .story-ready .scroll-cue { opacity: 1; transform: none; transition: opacity .9s ease 1s, transform 1.05s cubic-bezier(.2,.8,.2,1) 1s; }
     .scroll-cue::after { content: ""; display: block; width: 1px; height: 34px; margin: 8px auto 0; background: currentColor; animation: cue 1.8s ease-in-out infinite; }
 
     /* 封面與新人頁之間的邀請轉場：保留照片原始直式比例 */
@@ -335,7 +342,7 @@
         radial-gradient(circle at 50% 44%, rgba(255,255,255,.9), transparent 38%),
         repeating-linear-gradient(96deg, rgba(117,89,65,.025) 0 1px, transparent 1px 7px),
         linear-gradient(145deg, #f6efe4, #eee1d1 58%, #e6d5c0);
-      transition: opacity .7s ease, visibility .7s ease;
+      transition: opacity .7s ease, visibility 0s linear .7s;
       cursor: pointer;
       touch-action: pan-y;
     }
@@ -345,6 +352,7 @@
     .opening-gate::after { inset: 23px; border: 1px solid rgba(255,255,255,.68); }
     .opening-gate.is-opening { pointer-events: none; }
     .opening-gate.is-done { opacity: 0; visibility: hidden; }
+    .opening-gate[hidden] { display: none; }
     .opening-inner { position: relative; z-index: 1; width: min(100%, 430px); text-align: center; }
     .opening-eyebrow { margin: 0 0 9px; color: #6f3c3f; font: italic 600 20px/1 var(--latin); letter-spacing: .095em; transition: opacity .35s ease; }
     .opening-date { margin: 0 0 29px; color: #7f654c; font: 600 12px/1 var(--latin); letter-spacing: .22em; transition: opacity .35s ease; }
@@ -392,6 +400,14 @@
     .invitation-card { position: absolute; inset: 0; overflow: hidden; border: 1px solid rgba(129,94,58,.28); background: #f8f0e5; box-shadow: inset 0 0 35px rgba(122,86,50,.06); transition: transform 1.45s cubic-bezier(.2,.8,.2,1) .25s, box-shadow 1.1s ease; }
     .villa-line-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .61; mix-blend-mode: multiply; filter: brightness(1.08) saturate(.78) blur(0); transform: scale(1); transition: opacity 1.9s ease, filter 2.1s ease, transform 2.3s cubic-bezier(.2,.72,.2,1); }
     .opening-photo-stage { position: fixed; z-index: 8; left: 50%; top: 0; bottom: 0; width: min(100%, 480px); opacity: 0; pointer-events: none; overflow: hidden; background: #d8cbb9; -webkit-mask-image: linear-gradient(to bottom, #000 0 44%, transparent 56% 100%); mask-image: linear-gradient(to bottom, #000 0 44%, transparent 56% 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% 300%; mask-size: 100% 300%; -webkit-mask-position: 0 100%; mask-position: 0 100%; filter: sepia(.5) saturate(.68) brightness(1.05) blur(1px); transform: translateX(-50%) scale(1.035); transform-origin: center center; transition: opacity 2.05s ease, -webkit-mask-position 2.25s cubic-bezier(.44,0,.2,1), mask-position 2.25s cubic-bezier(.44,0,.2,1), filter 2.1s ease, transform 2.35s cubic-bezier(.2,.72,.2,1); }
+    .opening-photo-stage::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,250,241,.08), transparent 58%, rgba(27,15,11,.34));
+      pointer-events: none;
+    }
     .opening-photo-stage picture { position: absolute; inset: 0; display: block; overflow: hidden; }
     .opening-photo-stage img { position: absolute; inset: -2%; display: block; width: 104%; height: 104%; object-fit: cover; }
     .card-copy { position: absolute; z-index: 2; left: 13%; right: 13%; top: 14%; display: grid; justify-items: center; color: #5a4437; text-align: center; text-shadow: 0 1px rgba(255,255,255,.7); transition: opacity .8s ease; }
@@ -503,8 +519,8 @@
       <p class="open-hint" id="openingHint"><span>Open Our Invitation</span>輕觸畫面或向上滑，開啟喜帖</p>
     </div>
   </div>
-  <audio id="backgroundMusic" preload="none" loop>
-    <source src="assets/wedding-music.mp3" type="audio/mpeg">
+  <audio id="backgroundMusic" preload="metadata" loop>
+    <source src="assets/wedding-music.mp3?v=20260924" type="audio/mpeg">
   </audio>
   <button class="music-toggle" id="musicToggle" type="button" aria-label="Play background music" aria-pressed="false">
     <span class="note" aria-hidden="true">♫</span><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -517,7 +533,7 @@
       <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <div class="cover-copy">
         <div class="small">WEDDING INVITATION</div>
-        <h1><em>We’re getting</em>MARRIED</h1>
+        <h1><em>We’re getting</em><span>MARRIED</span></h1>
       </div>
       <div class="cover-invite">A DAY TO REMEMBER</div>
       <div class="scroll-cue">SCROLL</div>
@@ -744,6 +760,10 @@
         } catch (error) {
           syncMusicButton(false);
           console.warn('Background music could not start:', error);
+          toast.textContent = '音樂尚未載入完成，請再點一次右下角音符';
+          toast.classList.add('show');
+          window.clearTimeout(toastTimer);
+          toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2600);
         }
       } else {
         backgroundMusic.pause();
@@ -775,10 +795,12 @@
       const finishDelay = reduceMotion.matches ? 160 : 6300;
       window.setTimeout(() => openingGate.classList.add('is-enlarging'), enlargeDelay);
       window.setTimeout(() => openingGate.classList.add('is-transitioning'), phaseDelay);
+      window.setTimeout(() => document.body.classList.add('story-ready'), reduceMotion.matches ? 40 : 5350);
       window.setTimeout(() => openingGate.classList.add('is-done'), fadeDelay);
       window.setTimeout(() => {
         openingGate.hidden = true;
         document.body.classList.remove('invitation-locked');
+        document.body.classList.add('story-opened');
         resetStoryTop();
         window.requestAnimationFrame(resetStoryTop);
         autoScroll.started = true;
