@@ -462,6 +462,17 @@
     .music-toggle.playing .bars i:nth-child(2) { animation-delay: -.3s; }.music-toggle.playing .bars i:nth-child(3) { animation-delay: -.5s; }
     .toast { position: fixed; z-index: 130; left: 50%; bottom: 88px; width: min(calc(100% - 44px), 390px); padding: 13px 17px; border-radius: 14px; color: white; background: rgba(36,28,24,.88); opacity: 0; pointer-events: none; text-align: center; font-size: 13px; transform: translate(-50%, 12px); transition: .3s ease; }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .calendar-sheet { position: fixed; z-index: 320; inset: 0; display: grid; align-items: end; padding: 20px; background: rgba(31,24,20,.42); backdrop-filter: blur(5px); }
+    .calendar-sheet[hidden] { display: none; }
+    .calendar-dialog { width: min(100%, 430px); margin: 0 auto max(4px, env(safe-area-inset-bottom)); padding: 26px 22px 20px; border: 1px solid rgba(123,45,53,.18); border-radius: 24px; color: var(--ink); background: #fffaf2; box-shadow: 0 24px 65px rgba(38,24,17,.28); text-align: center; }
+    .calendar-dialog .scene-kicker { color: rgba(46,39,35,.56); font-size: 10px; }
+    .calendar-dialog h2 { margin: 9px 0 0; color: var(--wine); font: 600 27px/1.25 "Noto Serif TC", serif; letter-spacing: .08em; }
+    .calendar-dialog > p { margin: 11px 0 19px; color: rgba(46,39,35,.7); font: 13px/1.7 "Noto Serif TC", serif; }
+    .calendar-options { display: grid; gap: 10px; }
+    .calendar-options a { min-height: 49px; display: grid; place-items: center; padding: 0 16px; border: 1px solid var(--wine); border-radius: 999px; color: var(--wine); font: 600 13px/1.3 "Noto Serif TC", serif; letter-spacing: .06em; text-decoration: none; }
+    .calendar-options a.primary { color: white; background: var(--wine); }
+    .calendar-help { min-height: 38px; margin: 14px 4px 0 !important; color: rgba(46,39,35,.56) !important; font-size: 11px !important; line-height: 1.55 !important; }
+    .calendar-close { margin-top: 3px; padding: 8px 14px; border: 0; color: rgba(46,39,35,.62); background: transparent; font: 600 12px/1 "Noto Serif TC", serif; cursor: pointer; }
 
     /* 轉場與結尾 */
     .ending { display: grid; align-content: center; padding: 90px 24px 70px; color: #f8efe5; background: #1f1a17; }
@@ -527,6 +538,19 @@
     <span class="note" aria-hidden="true">♫</span><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
   </button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="calendar-sheet" id="calendarSheet" hidden>
+    <div class="calendar-dialog" role="dialog" aria-modal="true" aria-labelledby="calendarTitle">
+      <div class="scene-kicker">SAVE THE DATE</div>
+      <h2 id="calendarTitle">加入行事曆</h2>
+      <p>2026.11.14　中午 12:00–15:00<br>The Lin 林酒店 3F 世紀廳</p>
+      <div class="calendar-options">
+        <a class="primary" id="calendarPrimary" href="#">加入行事曆</a>
+        <a id="calendarSecondary" href="#">其他行事曆</a>
+      </div>
+      <p class="calendar-help" id="calendarHelp"></p>
+      <button class="calendar-close" id="calendarClose" type="button">稍後再說</button>
+    </div>
+  </div>
 
   <main class="story">
     <section class="scene cover" aria-label="喜帖封面">
@@ -649,7 +673,7 @@
       </div>
       <div class="event-actions reveal">
         <a href="https://www.google.com/maps/search/?api=1&amp;query=%E8%87%BA%E4%B8%AD%E6%9E%97%E9%85%92%E5%BA%97%20%E8%87%BA%E4%B8%AD%E5%B8%82%E8%A5%BF%E5%B1%AF%E5%8D%80%E6%9C%9D%E5%AF%8C%E8%B7%AF99%E8%99%9F" target="_blank" rel="noopener noreferrer" aria-label="在 Google 地圖開啟 The Lin 林酒店">開啟地圖</a>
-        <button type="button" data-demo="行事曆功能將在婚宴流程確認後開放。">加入行事曆</button>
+        <button type="button" id="calendarButton" aria-haspopup="dialog" aria-controls="calendarSheet">加入行事曆</button>
       </div>
     </section>
 
@@ -829,6 +853,57 @@
 
     const toast = document.getElementById('toast');
     let toastTimer;
+    const calendarButton = document.getElementById('calendarButton');
+    const calendarSheet = document.getElementById('calendarSheet');
+    const calendarClose = document.getElementById('calendarClose');
+    const calendarPrimary = document.getElementById('calendarPrimary');
+    const calendarSecondary = document.getElementById('calendarSecondary');
+    const calendarHelp = document.getElementById('calendarHelp');
+    const nativeCalendarUrl = 'assets/yongpeng-yilan-wedding.ics?v=20260924';
+    const googleCalendarUrl = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
+      action: 'TEMPLATE',
+      text: '💍 咏朋&怡蘭 婚宴',
+      dates: '20261114T040000Z/20261114T070000Z',
+      details: '誠摯邀請您，與我們共享這一天。婚宴時間：中午 12:00。',
+      location: 'The Lin 林酒店 3F 世紀廳，臺中市西屯區朝富路99號'
+    }).toString();
+    const isAppleDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (isAppleDevice) {
+      calendarPrimary.href = nativeCalendarUrl;
+      calendarPrimary.textContent = '加入 Apple／內建行事曆';
+      calendarSecondary.href = googleCalendarUrl;
+      calendarSecondary.target = '_blank';
+      calendarSecondary.rel = 'noopener noreferrer';
+      calendarSecondary.textContent = '改用 Google 行事曆';
+      calendarHelp.textContent = '若 LINE 內無法加入，請使用右下角選單改以 Safari 開啟。';
+    } else {
+      calendarPrimary.href = googleCalendarUrl;
+      calendarPrimary.target = '_blank';
+      calendarPrimary.rel = 'noopener noreferrer';
+      calendarPrimary.textContent = '加入 Google 行事曆';
+      calendarSecondary.href = nativeCalendarUrl;
+      calendarSecondary.download = '咏朋&怡蘭-婚宴.ics';
+      calendarSecondary.textContent = '加入手機內建行事曆（.ics）';
+      calendarHelp.textContent = 'Android 建議使用 Google 行事曆；也可下載 .ics 交由其他行事曆開啟。';
+    }
+    function closeCalendarSheet() {
+      calendarSheet.hidden = true;
+      calendarButton.focus({ preventScroll: true });
+    }
+    calendarButton.addEventListener('click', () => {
+      calendarSheet.hidden = false;
+      calendarClose.focus({ preventScroll: true });
+    });
+    calendarClose.addEventListener('click', closeCalendarSheet);
+    calendarSheet.addEventListener('click', (event) => {
+      if (event.target === calendarSheet) closeCalendarSheet();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !calendarSheet.hidden) closeCalendarSheet();
+    });
+    [calendarPrimary, calendarSecondary].forEach((link) => link.addEventListener('click', () => {
+      window.setTimeout(() => { calendarSheet.hidden = true; }, 250);
+    }));
     document.querySelectorAll('[data-demo]').forEach((button) => button.addEventListener('click', () => {
       toast.textContent = button.dataset.demo;
       toast.classList.add('show');
