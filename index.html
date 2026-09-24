@@ -102,7 +102,7 @@
       object-fit: cover;
       transform: scale(1);
     }
-    .story-opened .cover-photo { animation: coverPush 11s ease-in-out .2s infinite alternate; }
+    .story-opened .cover-photo { animation: coverPush 15s ease-in-out 1s infinite alternate; }
     .cover::after {
       content: "";
       position: absolute;
@@ -136,7 +136,8 @@
       letter-spacing: .12em;
     }
     .story-ready .cover-invite { opacity: 1; transform: none; transition: opacity .9s ease .8s, transform 1.05s cubic-bezier(.2,.8,.2,1) .8s; }
-    .petals { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+    .petals { position: absolute; inset: 0; z-index: 3; opacity: 0; pointer-events: none; }
+    .story-ready .petals { opacity: 1; transition: opacity 1.4s ease 1.15s; }
     .petals i { position: absolute; top: -8%; width: 9px; height: 14px; border-radius: 70% 15% 70% 15%; background: rgba(255,255,255,.9); animation: petal 7.5s linear infinite; }
     .petals i:nth-child(1){left:8%;animation-delay:-2s}.petals i:nth-child(2){left:24%;animation-delay:-5s;scale:.7}.petals i:nth-child(3){left:42%;animation-delay:-.6s}.petals i:nth-child(4){left:61%;animation-delay:-4s;scale:.8}.petals i:nth-child(5){left:79%;animation-delay:-1.5s}.petals i:nth-child(6){left:92%;animation-delay:-6s;scale:.65}
     .scroll-cue { position: absolute; z-index: 4; right: 6%; bottom: 5%; color: white; font: 600 11px/1 var(--latin); letter-spacing: .16em; writing-mode: vertical-rl; }
@@ -144,7 +145,7 @@
     .scroll-cue::after { content: ""; display: block; width: 1px; height: 34px; margin: 8px auto 0; background: currentColor; animation: cue 1.8s ease-in-out infinite; }
 
     /* 封面與新人頁之間的邀請轉場：保留照片原始直式比例 */
-    .invitation-note { min-height: auto; padding: 94px 24px 72px; background: #f8eee1; }
+    .invitation-note { min-height: auto; padding: 76px 24px 38px; background: #f8eee1; }
     .invite-title { position: relative; z-index: 4; margin: 0 0 -24px 5px; color: #9f352f; }
     .invite-title small { display: block; margin: 0 0 12px 8px; color: rgba(46,39,35,.62); font: 600 12px/1 var(--latin); letter-spacing: .22em; }
     .invite-title h2 { width: max-content; margin: 0; font-family: "ChenYuluoyan Invite", cursive; font-size: 58px; font-weight: 400; line-height: .9; letter-spacing: .015em; transform: rotate(-4deg); }
@@ -172,8 +173,8 @@
 
     /* 02 新人介紹 */
     .intro {
-      min-height: 760px;
-      padding: 76px 24px 30px;
+      min-height: 660px;
+      padding: 46px 24px 20px;
       background:
         radial-gradient(circle at 92% 8%, rgba(226,173,67,.25) 0 9%, transparent 9.5%),
         radial-gradient(circle at 7% 83%, rgba(232,104,87,.17) 0 11%, transparent 11.5%),
@@ -184,14 +185,14 @@
     .intro-heading .scene-kicker { color: rgba(46,39,35,.68); }
     .intro-heading h2 { margin: 9px 0 0; color: #6f3037; font: italic 600 42px/.9 var(--latin); }
     .intro-heading h2 em { display: block; margin: 6px 0 0 21px; color: #b45549; font-family: inherit; font-size: 1.02em; font-weight: 600; }
-    .cutout-wrap { position: absolute; z-index: 2; left: 50%; bottom: 42px; width: 92%; height: 68%; transform: translateX(-50%); }
+    .cutout-wrap { position: absolute; z-index: 2; left: 50%; bottom: 16px; width: 94%; height: 73%; transform: translateX(-50%); }
     .cutout-wrap::before { content: none; }
     .cutout-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; filter: drop-shadow(4px 0 #fff8ec) drop-shadow(-4px 0 #fff8ec) drop-shadow(0 4px #fff8ec) drop-shadow(0 -4px #fff8ec) drop-shadow(0 14px 14px rgba(58,33,22,.18)); }
-    .name-tag { position: absolute; z-index: 6; top: 49%; min-width: 88px; padding: 8px 11px 7px; border: 1px solid var(--ink); border-radius: 999px; color: white; background: #6f3037; box-shadow: 4px 4px 0 #ead2bb; text-align: center; animation: tagFloat 2.8s ease-in-out infinite; }
+    .name-tag { position: absolute; z-index: 6; top: 47%; min-width: 88px; padding: 8px 11px 7px; border: 1px solid var(--ink); border-radius: 999px; color: white; background: #6f3037; box-shadow: 4px 4px 0 #ead2bb; text-align: center; animation: tagFloat 2.8s ease-in-out infinite; }
     .name-tag small { display: block; font: 600 10px/1 var(--latin); letter-spacing: .12em; opacity: .86; }
     .name-tag strong { display: block; margin-top: 4px; color: #fff8ec; font-family: "ChenYuluoyan Invite", cursive; font-size: 22px; font-weight: 400; line-height: 1; letter-spacing: .04em; }
     .name-tag.groom { left: 17px; transform: rotate(-4deg); }
-    .name-tag.bride { right: 17px; top: 53%; background: #b45549; transform: rotate(4deg); animation-delay: -.9s; }
+    .name-tag.bride { right: 17px; top: 51%; background: #b45549; transform: rotate(4deg); animation-delay: -.9s; }
     .name-tag.groom.reveal { transform: rotate(-4deg) translateY(20px) scale(.84); transition: opacity .55s ease .28s, transform .65s cubic-bezier(.18,1.25,.42,1) .28s; }
     .name-tag.groom.reveal.in { transform: rotate(-4deg); }
     .name-tag.bride.reveal { transform: rotate(4deg) translateY(20px) scale(.84); transition: opacity .55s ease .46s, transform .65s cubic-bezier(.18,1.25,.42,1) .46s; }
@@ -245,14 +246,14 @@
     .lively-pair figure.reveal:first-child { transform: translateX(-28px); }
     .lively-pair figure.reveal:nth-child(2) { transform: translateX(28px); transition-delay: .12s; }
     .lively-pair figure.reveal.in { transform: none; }
-    .grass-finale { padding-top: 34px; padding-bottom: 30px; background: #eee4d8; }
-    .warm-heading { position: relative; z-index: 3; width: 80%; margin: 0 0 -10px auto; padding: 3px 7px 7px 0; text-align: right; }
+    .grass-finale { padding-top: 26px; padding-bottom: 14px; background: #eee4d8; }
+    .warm-heading { position: relative; z-index: 3; width: 80%; margin: 0 0 -18px auto; padding: 3px 7px 7px 0; text-align: right; }
     .warm-heading span { display: block; color: rgba(53,48,42,.66); font: 10px/1.4 Georgia, serif; letter-spacing: .17em; }
     .warm-heading strong { display: block; margin-top: 0; color: #8f3937; font: italic 600 34px/.94 var(--latin); }
     .warm-heading::after { content: ""; display: block; width: 56px; height: 1px; margin: 16px 2px 0 auto; background: #bd916e; transform: rotate(-4deg); }
-    .warm-collage { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+    .warm-collage { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: start; }
     .warm-photo-main { width: 100%; margin: 0 !important; }
-    .warm-photo-detail { position: relative; z-index: 2; width: 100%; margin: 8px 0 0 !important; box-shadow: 0 16px 28px rgba(74,50,37,.12); }
+    .warm-photo-detail { position: relative; z-index: 2; width: 100%; margin: 18px 0 0 -5px !important; box-shadow: 0 16px 28px rgba(74,50,37,.12); }
     .warm-note { position: absolute; z-index: 4; right: 0; top: 96px; width: 42%; padding: 15px 13px; color: #5c4940; background: rgba(255,250,242,.93); box-shadow: 0 12px 25px rgba(74,50,37,.12); font: 10px/1.65 Georgia, serif; letter-spacing: .11em; }
     .warm-photo-detail figcaption { position: absolute; right: -5px; bottom: 18px; padding: 8px 10px; color: white; background: rgba(123,45,53,.82); font: 700 9px/1 Georgia, serif; letter-spacing: .14em; }
     .warm-heading span { opacity: 0; translate: 22px 8px; transition: opacity .65s ease .12s, translate .8s cubic-bezier(.2,.8,.2,1) .12s; }
@@ -272,24 +273,25 @@
 
     .selected-story {
       min-height: auto;
-      padding: 30px 24px 0;
-      background: linear-gradient(180deg, #eee4d8, #f8f1e7 24%, #f8f1e7);
+      padding: 8px 24px 0;
+      background: linear-gradient(180deg, #eee4d8, #f8f1e7 20%, #f8f1e7);
     }
     .selected-story::before {
       content: "";
       position: absolute;
       left: 24px;
-      top: 16px;
+      top: 7px;
       width: 74px;
       height: 1px;
       background: rgba(123,45,53,.38);
     }
-    .selected-pair { position: relative; margin-top: 12px; }
+    .selected-pair { position: relative; margin-top: 8px; padding-bottom: 4px; }
     .selected-photo { position: relative; margin: 0; background: #ddd2c3; box-shadow: 0 17px 34px rgba(65,42,32,.13); }
     .selected-photo img { width: 100%; height: auto; }
-    .selected-photo.portrait { width: 76%; margin-inline: auto; }
-    .selected-photo.walk { z-index: 2; width: 68%; margin: 24px auto 0; aspect-ratio: 3 / 4; overflow: hidden; box-shadow: none; }
-    .selected-photo.walk img { width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
+    .selected-photo.portrait { width: 88%; margin: 0 auto 0 0; aspect-ratio: 4 / 5; overflow: hidden; }
+    .selected-photo.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+    .selected-photo.walk { width: 82%; margin: 14px 0 0 auto; aspect-ratio: 4 / 5; overflow: hidden; border: 8px solid #f8f1e7; box-shadow: 0 15px 30px rgba(65,42,32,.1); }
+    .selected-photo.walk img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
     .selected-photo.walk::after { content: ""; position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 30%; background: linear-gradient(180deg, transparent, rgba(248,241,231,.96)); pointer-events: none; }
     .selected-photo.portrait.reveal { transform: translateX(-28px); }
     .selected-photo.portrait.reveal.in { transform: none; }
@@ -412,8 +414,7 @@
     .opening-photo-stage img { position: absolute; inset: -2%; display: block; width: 104%; height: 104%; object-fit: cover; }
     .card-copy { position: absolute; z-index: 2; left: 13%; right: 13%; top: 14%; display: grid; justify-items: center; color: #5a4437; text-align: center; text-shadow: 0 1px rgba(255,255,255,.7); transition: opacity .8s ease; }
     .card-copy > span { color: #9a7650; font: 600 10px/1 var(--latin); letter-spacing: .25em; }
-    .card-copy > strong { margin-top: 13px; color: var(--wine); font: italic 600 27px/.92 var(--latin); }
-    .card-copy > strong i { display: inline-block; margin: 0 3px; color: #9a7650; font-size: .72em; font-weight: 500; }
+    .card-copy > strong { margin-top: 13px; color: var(--wine); font: 400 32px/1 "ChenYuluoyan Invite", cursive; letter-spacing: .12em; }
     .card-copy > small { margin-top: 12px; color: rgba(71,53,44,.72); font: 600 10px/1 var(--latin); letter-spacing: .18em; }
     .vellum-panel { position: absolute; z-index: 3; top: 0; bottom: 0; width: 50.3%; border-color: rgba(152,120,84,.24); background: linear-gradient(110deg, rgba(255,254,249,.68), rgba(242,232,218,.5)); box-shadow: inset 0 0 24px rgba(255,255,255,.48); backdrop-filter: blur(.45px); backface-visibility: hidden; transition: transform 1.38s cubic-bezier(.22,.72,.2,1) .22s, opacity 1s ease .28s; }
     .vellum-panel::after { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(156,119,77,.18); }
@@ -507,7 +508,7 @@
         <div class="stationery">
           <div class="invitation-card" aria-hidden="true">
             <img class="villa-line-art" src="assets/villa-line-art-v1.jpg?v=20260924" width="900" height="1200" alt="">
-            <div class="card-copy"><span>OUR WEDDING</span><strong>Yongpeng <i>&amp;</i> Yilan</strong><small>2026 · 11 · 14</small></div>
+            <div class="card-copy"><span>OUR WEDDING</span><strong>誠摯邀請</strong><small>2026 · 11 · 14</small></div>
           </div>
           <div class="vellum-panel left" aria-hidden="true"></div>
           <div class="vellum-panel right" aria-hidden="true"></div>
@@ -792,15 +793,15 @@
       const enlargeDelay = reduceMotion.matches ? 10 : 1700;
       const phaseDelay = reduceMotion.matches ? 20 : 3150;
       const fadeDelay = reduceMotion.matches ? 80 : 5600;
-      const finishDelay = reduceMotion.matches ? 160 : 6300;
+      const finishDelay = reduceMotion.matches ? 160 : 6450;
       window.setTimeout(() => openingGate.classList.add('is-enlarging'), enlargeDelay);
       window.setTimeout(() => openingGate.classList.add('is-transitioning'), phaseDelay);
-      window.setTimeout(() => document.body.classList.add('story-ready'), reduceMotion.matches ? 40 : 5350);
       window.setTimeout(() => openingGate.classList.add('is-done'), fadeDelay);
       window.setTimeout(() => {
         openingGate.hidden = true;
         document.body.classList.remove('invitation-locked');
         document.body.classList.add('story-opened');
+        window.setTimeout(() => document.body.classList.add('story-ready'), reduceMotion.matches ? 0 : 110);
         resetStoryTop();
         window.requestAnimationFrame(resetStoryTop);
         autoScroll.started = true;
