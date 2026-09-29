@@ -21,12 +21,12 @@
   <meta name="twitter:image" content="https://joannalian.github.io/wedding-invitation/assets/line-share-preview-v1.jpg">
   <title>詹咏朋 × 連怡蘭｜婚宴邀請</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237b2d35'/%3E%3Cpath d='M32 49S12 38 12 23a11 11 0 0 1 20-6 11 11 0 0 1 20 6c0 15-20 26-20 26Z' fill='%23fff8ee'/%3E%3C/svg%3E">
-  <link rel="preload" as="image" href="assets/villa-line-art-v2.webp?v=20260929" type="image/webp" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/wax-ribbon-reference-v2.webp?v=20260924" type="image/webp" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/rvnk6871-hero.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/villa-line-art-v3.webp?v=20260929" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/wax-ribbon-reference-v3.webp?v=20260929" type="image/webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&amp;family=Noto+Serif+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&amp;family=Noto+Serif+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&amp;family=Noto+Serif+TC:wght@400;500;600;700&amp;display=swap" rel="stylesheet"></noscript>
   <style>
     @font-face {
       font-family: "ChenYuluoyan Invite";
@@ -34,6 +34,7 @@
       font-display: swap;
     }
     :root {
+      --story-max: 480px;
       --paper: #fff8ec;
       --ink: #2e2723;
       --wine: #7b2d35;
@@ -50,7 +51,8 @@
       overflow-y: scroll;
       overscroll-behavior-x: none;
       scrollbar-gutter: stable;
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
+      overflow-anchor: none;
     }
     body {
       position: relative;
@@ -58,6 +60,7 @@
       max-width: 100%;
       margin: 0;
       overflow-x: hidden;
+      overflow-anchor: none;
       overscroll-behavior-x: none;
       touch-action: pan-y pinch-zoom;
       color: var(--ink);
@@ -76,9 +79,10 @@
     .story {
       position: relative;
       width: 100%;
-      max-width: 480px;
+      max-width: var(--story-max);
       margin-inline: auto;
       overflow: hidden;
+      overflow-anchor: none;
       touch-action: pan-y pinch-zoom;
       background: var(--paper);
       box-shadow: 0 0 70px rgba(42,28,20,.22);
@@ -312,21 +316,21 @@
     .event { min-height: auto; padding: 46px 24px 72px; background: #fbf5eb; font-family: "Noto Serif TC", "Microsoft JhengHei", serif; }
     .event-head { text-align: center; }
     .event-head h2 { margin: 10px 0 0; color: var(--wine); font-family: inherit; font-size: 39px; font-weight: 600; line-height: 1.35; letter-spacing: .15em; }
-    .event-head p { margin: 13px 0 0; color: rgba(46,39,35,.84); font: 500 14px/1.7 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .04em; }
+    .event-head p { margin: 13px 0 0; color: rgba(46,39,35,.88); font: 600 15px/1.7 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .035em; }
     .event-overview { display: grid; grid-template-columns: repeat(3, 1fr); margin: 34px 0 24px; padding: 24px 0 22px; border-top: 1px solid rgba(62,50,42,.3); border-bottom: 1px solid rgba(62,50,42,.3); }
     .event-fact { position: relative; display: grid; grid-template-rows: 29px 18px minmax(30px, auto) 22px; align-items: center; min-width: 0; padding: 0 8px; text-align: center; }
     .event-fact + .event-fact { border-left: 1px solid rgba(62,50,42,.26); }
     .event-fact svg { width: 29px; height: 29px; justify-self: center; fill: none; stroke: #756056; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.45; }
-    .event-fact .fact-label { display: block; color: #53463f; font: 600 12px/1.3 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .13em; }
-    .event-fact strong { display: block; align-self: center; color: #352b26; font: 600 15px/1.25 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .03em; white-space: nowrap; }
+    .event-fact .fact-label { display: block; color: #40342f; font: 700 12px/1.3 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .11em; }
+    .event-fact strong { display: block; align-self: center; color: #302722; font: 700 15px/1.25 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .02em; white-space: nowrap; }
     .event-fact.time strong { color: var(--wine); font-size: 18px; }
-    .event-fact small { display: block; color: #675851; font: 500 11px/1.45 "Noto Serif TC", "Microsoft JhengHei", serif; }
+    .event-fact small { display: block; color: #4e403a; font: 700 12px/1.45 "Noto Serif TC", "Microsoft JhengHei", serif; }
     .event-fact small.hall { color: var(--wine); font-size: 14px; font-weight: 700; letter-spacing: .08em; }
     .calendar-card, .venue-card { border: 1px solid rgba(62,50,42,.16); border-radius: 24px; background: rgba(255,255,255,.74); box-shadow: 0 18px 35px rgba(80,55,39,.08); }
     .calendar-card { padding: 20px 19px 18px; }
-    .calendar-top { display: flex; justify-content: space-between; margin-bottom: 15px; font: 600 13px/1 "Noto Serif TC", serif; letter-spacing: .08em; }
-    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; text-align: center; font: 12px/30px "Noto Serif TC", serif; }
-    .calendar-grid b { color: rgba(46,39,35,.68); font-size: 11px; font-weight: 500; }
+    .calendar-top { display: flex; justify-content: space-between; margin-bottom: 15px; font: 700 14px/1 "Noto Serif TC", serif; letter-spacing: .06em; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 7px; color: rgba(46,39,35,.88); text-align: center; font: 700 13px/30px "Noto Serif TC", serif; }
+    .calendar-grid b { color: rgba(46,39,35,.84); font-size: 12px; font-weight: 700; }
     .calendar-grid .muted { color: rgba(46,39,35,.25); }
     .calendar-grid .selected { width: 30px; height: 30px; margin: auto; border-radius: 50%; color: white; background: var(--wine); box-shadow: 0 0 0 5px rgba(123,45,53,.12); }
     .venue-card { margin-top: 16px; overflow: hidden; }
@@ -342,9 +346,9 @@
     .map-location small { margin-top: 6px; color: rgba(46,39,35,.62); font: 11px/1.5 "Noto Serif TC", serif; letter-spacing: .03em; }
     .venue-copy { padding: 20px; }
     .venue-copy h3 { margin: 0; font: 600 23px/1.3 "Noto Serif TC", serif; letter-spacing: .06em; }
-    .venue-copy p { margin: 9px 0 0; color: rgba(46,39,35,.62); font: 13px/1.7 "Noto Serif TC", serif; }
+    .venue-copy p { margin: 9px 0 0; color: rgba(46,39,35,.82); font: 700 15px/1.65 "Noto Serif TC", serif; }
     .event-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
-    .event-actions a, .event-actions button { min-height: 48px; display: grid; place-items: center; padding: 0 14px; border: 1px solid var(--wine); border-radius: 999px; color: var(--wine); background: transparent; font: 600 12px/1.2 "Noto Serif TC", serif; letter-spacing: .1em; text-align: center; text-decoration: none; cursor: pointer; }
+    .event-actions a, .event-actions button { min-height: 50px; display: grid; place-items: center; padding: 0 14px; border: 1px solid var(--wine); border-radius: 999px; color: var(--wine); background: transparent; font: 700 13px/1.25 "Noto Serif TC", serif; letter-spacing: .075em; text-align: center; text-decoration: none; cursor: pointer; }
     .event-actions button:last-child { color: white; background: var(--wine); }
 
     /* 開場封蠟信封：點擊即提供音樂播放所需的使用者手勢。 */
@@ -419,7 +423,7 @@
     .opening-progress { width: min(220px, 72vw); height: 2px; overflow: hidden; border-radius: 999px; background: rgba(123,45,53,.14); }
     .opening-progress i { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #b48b65, var(--wine)); transform: scaleX(.09); transform-origin: left; }
     .opening-gate:not(.assets-ready):not(.is-opening) .opening-progress i { animation: preparePulse 1.25s ease-in-out infinite alternate; }
-    .opening-gate.is-opening .opening-progress i { animation: openingProgress 4.1s linear both; }
+    .opening-gate.is-opening .opening-progress i { animation: openingProgress 3.4s linear both; }
     .opening-skip { min-height: 31px; padding: 4px 14px; border: 0; color: rgba(96,65,57,.76); background: transparent; font: 500 11px/1 "Noto Serif TC", serif; letter-spacing: .08em; opacity: 0; pointer-events: none; transition: opacity .35s ease 1s; }
     .opening-gate.is-opening .opening-skip { opacity: 1; pointer-events: auto; }
     .opening-gate.is-opening .opening-eyebrow, .opening-gate.is-opening .opening-date, .opening-gate.is-opening .opening-action-cue, .opening-gate.is-opening .opening-botanical { opacity: 0; }
@@ -429,10 +433,10 @@
 
     /* 描圖紙婚禮卡：香檳絲帶、酒紅封蠟與小洋樓線稿。 */
     .luxury-stage { position: relative; display: grid; place-items: center; height: min(112vw, 480px); min-height: 390px; perspective: 1300px; }
-    .stationery { position: relative; z-index: 2; width: min(82vw, 350px); aspect-ratio: 3 / 4; transform-style: preserve-3d; filter: drop-shadow(0 25px 25px rgba(67,45,30,.18)); transition: transform 3.35s cubic-bezier(.18,.7,.18,1) .42s, opacity .9s ease 2.75s, filter 2.7s ease .42s; }
+    .stationery { position: relative; z-index: 2; width: min(82vw, 350px); aspect-ratio: 3 / 4; transform-style: preserve-3d; filter: drop-shadow(0 25px 25px rgba(67,45,30,.18)); transition: transform 2.85s cubic-bezier(.18,.7,.18,1) .32s, opacity .8s ease 2.4s, filter 2.3s ease .32s; }
     .invitation-card { position: absolute; inset: 0; overflow: hidden; border: 1px solid rgba(129,94,58,.28); background: #f8f0e5; box-shadow: inset 0 0 35px rgba(122,86,50,.06); transition: transform 1.45s cubic-bezier(.2,.8,.2,1) .25s, box-shadow 1.1s ease; }
-    .villa-line-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .61; mix-blend-mode: multiply; filter: brightness(1.08) saturate(.78) blur(0); transform: scale(1); transition: opacity 1.05s ease 2.5s, filter 1.15s ease 2.45s, transform 3.35s cubic-bezier(.18,.7,.18,1) .42s; }
-    .opening-photo-stage { position: fixed; z-index: 8; left: 50%; top: 0; bottom: 0; width: min(100%, 480px); opacity: 0; pointer-events: none; overflow: hidden; background: #d8cbb9; -webkit-mask-image: linear-gradient(to bottom, #000 0 44%, transparent 56% 100%); mask-image: linear-gradient(to bottom, #000 0 44%, transparent 56% 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% 300%; mask-size: 100% 300%; -webkit-mask-position: 0 100%; mask-position: 0 100%; filter: sepia(.42) saturate(.72) brightness(1.04) blur(.8px); transform: translateX(-50%) scale(1.025); transform-origin: center center; transition: opacity 1.25s ease 2.35s, -webkit-mask-position 1.5s cubic-bezier(.4,0,.2,1) 2.15s, mask-position 1.5s cubic-bezier(.4,0,.2,1) 2.15s, filter 1.35s ease 2.25s, transform 1.55s cubic-bezier(.2,.72,.2,1) 2.15s; }
+    .villa-line-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .61; mix-blend-mode: multiply; filter: brightness(1.08) saturate(.78) blur(0); transform: scale(1); transition: opacity .9s ease 2.1s, filter 1s ease 2.05s, transform 2.85s cubic-bezier(.18,.7,.18,1) .32s; }
+    .opening-photo-stage { position: fixed; z-index: 8; left: 50%; top: 0; bottom: 0; width: min(100%, var(--story-max)); opacity: 0; pointer-events: none; overflow: hidden; background: #d8cbb9; -webkit-mask-image: linear-gradient(to bottom, #000 0 44%, transparent 56% 100%); mask-image: linear-gradient(to bottom, #000 0 44%, transparent 56% 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% 300%; mask-size: 100% 300%; -webkit-mask-position: 0 100%; mask-position: 0 100%; filter: sepia(.42) saturate(.72) brightness(1.04) blur(.8px); transform: translateX(-50%) scale(1.025); transform-origin: center center; transition: opacity 1s ease 1.95s, -webkit-mask-position 1.15s cubic-bezier(.4,0,.2,1) 1.8s, mask-position 1.15s cubic-bezier(.4,0,.2,1) 1.8s, filter 1.1s ease 1.85s, transform 1.2s cubic-bezier(.2,.72,.2,1) 1.8s; }
     .opening-photo-stage::after {
       content: "";
       position: absolute;
@@ -474,7 +478,7 @@
     /* 信封開啟後只走一條連續鏡頭：插畫持續放大，後段自然交疊成主圖。 */
     .opening-gate.is-opening .stationery { opacity: 0; filter: drop-shadow(0 34px 40px rgba(67,45,30,.08)); transform: translateY(-4vh) scale(1.29); }
     .opening-gate.is-opening .villa-line-art { opacity: 0; filter: brightness(1.1) saturate(.7) blur(2.5px); transform: scale(1.04); }
-    .opening-gate.is-opening .card-copy { opacity: 0; transition-delay: 2.45s; }
+    .opening-gate.is-opening .card-copy { opacity: 0; transition-delay: 2.05s; }
     .opening-gate.is-opening .opening-photo-stage { opacity: 1; -webkit-mask-position: 0 0; mask-position: 0 0; filter: sepia(0) saturate(1) brightness(1) blur(0); transform: translateX(-50%) scale(1); }
     .closure-real { position: absolute; z-index: 7; left: -10%; top: 40.5%; width: 120%; aspect-ratio: 3 / 1; padding: 0; border: 0; background: transparent; pointer-events: none; transform-origin: 52% 53%; transition: transform .72s cubic-bezier(.2,.72,.22,1), opacity .58s ease .1s, filter .62s ease; }
     .closure-real picture, .closure-real img { display: block; width: 100%; height: 100%; }
@@ -486,7 +490,7 @@
     .opening-gate.is-opening .invitation-card { transition-delay: .52s; }
 
     /* 音樂控制 */
-    .music-toggle { position: fixed; z-index: 120; right: max(16px, calc((100vw - 480px)/2 + 16px)); bottom: max(18px, env(safe-area-inset-bottom)); width: 58px; height: 58px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.62); border-radius: 50%; color: white; background: rgba(123,45,53,.9); box-shadow: 0 10px 28px rgba(55,31,27,.28); backdrop-filter: blur(10px); cursor: pointer; }
+    .music-toggle { position: fixed; z-index: 120; right: max(16px, calc((100vw - var(--story-max))/2 + 16px)); bottom: max(18px, env(safe-area-inset-bottom)); width: 58px; height: 58px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.62); border-radius: 50%; color: white; background: rgba(123,45,53,.9); box-shadow: 0 10px 28px rgba(55,31,27,.28); backdrop-filter: blur(10px); cursor: pointer; }
     .music-toggle .note { font: 22px/1 Georgia, serif; }
     .music-toggle .bars { position: absolute; bottom: 9px; display: flex; align-items: end; gap: 2px; height: 8px; }
     .music-toggle .bars i { width: 2px; height: 3px; background: white; }
@@ -499,12 +503,12 @@
     .calendar-dialog { width: min(100%, 430px); margin: 0 auto max(4px, env(safe-area-inset-bottom)); padding: 26px 22px 20px; border: 1px solid rgba(123,45,53,.18); border-radius: 24px; color: var(--ink); background: #fffaf2; box-shadow: 0 24px 65px rgba(38,24,17,.28); text-align: center; }
     .calendar-dialog .scene-kicker { color: rgba(46,39,35,.56); font-size: 10px; }
     .calendar-dialog h2 { margin: 9px 0 0; color: var(--wine); font: 600 27px/1.25 "Noto Serif TC", serif; letter-spacing: .08em; }
-    .calendar-dialog > p { margin: 11px 0 19px; color: rgba(46,39,35,.7); font: 13px/1.7 "Noto Serif TC", serif; }
+    .calendar-dialog > p { margin: 11px 0 19px; color: rgba(46,39,35,.8); font: 600 14px/1.7 "Noto Serif TC", serif; }
     .calendar-options { display: grid; gap: 10px; }
-    .calendar-options a { min-height: 49px; display: grid; place-items: center; padding: 0 16px; border: 1px solid var(--wine); border-radius: 999px; color: var(--wine); font: 600 13px/1.3 "Noto Serif TC", serif; letter-spacing: .06em; text-decoration: none; }
+    .calendar-options a { min-height: 50px; display: grid; place-items: center; padding: 0 16px; border: 1px solid var(--wine); border-radius: 999px; color: var(--wine); font: 700 14px/1.3 "Noto Serif TC", serif; letter-spacing: .045em; text-decoration: none; }
     .calendar-options a.primary { color: white; background: var(--wine); }
-    .calendar-help { min-height: 38px; margin: 14px 4px 0 !important; color: rgba(46,39,35,.56) !important; font-size: 11px !important; line-height: 1.55 !important; }
-    .calendar-close { margin-top: 3px; padding: 8px 14px; border: 0; color: rgba(46,39,35,.62); background: transparent; font: 600 12px/1 "Noto Serif TC", serif; cursor: pointer; }
+    .calendar-help { min-height: 38px; margin: 14px 4px 0 !important; color: rgba(46,39,35,.68) !important; font-size: 12px !important; font-weight: 600 !important; line-height: 1.6 !important; }
+    .calendar-close { margin-top: 3px; padding: 9px 14px; border: 0; color: rgba(46,39,35,.72); background: transparent; font: 700 13px/1 "Noto Serif TC", serif; cursor: pointer; }
 
     /* 轉場與結尾 */
     .ending { display: grid; align-content: center; padding: 90px 24px 70px; color: #f8efe5; background: #1f1a17; }
@@ -530,7 +534,32 @@
     @keyframes closureInvite { 0%,62%,100% { transform: translateY(0) scale(1); } 72% { transform: translateY(2px) scale(.994); } 82% { transform: translateY(-2px) scale(1.008); } 90% { transform: translateY(0) scale(1); } }
     @keyframes actionCueBreath { 0%,62%,100% { box-shadow: 0 8px 22px rgba(76,45,33,.14), inset 0 1px rgba(255,255,255,.8); } 82% { box-shadow: 0 9px 25px rgba(123,45,53,.22), 0 0 0 5px rgba(123,45,53,.045), inset 0 1px rgba(255,255,255,.8); } }
 
+    /* 手機自動捲動時避免整張照片同時做無限縮放，減少合成圖層顫動。 */
+    @media (pointer: coarse), (max-width: 600px) {
+      .story-opened .cover-photo,
+      .photo-scene > img { animation: none !important; transform: scale(1.01); }
+    }
+
     @media (min-width: 700px) { body { padding-block: 20px; } .story { border-radius: 30px; } }
+    @media (min-width: 900px) {
+      :root { --story-max: 720px; }
+      body { padding-block: 28px; }
+      .story { border-radius: 32px; }
+      .invitation-note { padding: 88px 48px 48px; }
+      .intro { min-height: 760px; padding: 56px 48px 24px; }
+      .cutout-wrap { width: 78%; }
+      .name-tag.groom { left: 58px; }
+      .name-tag.bride { right: 58px; }
+      .grass-intro { padding: 60px 52px 34px; }
+      .series-marker { margin-inline: 52px; }
+      .grass-panel { padding: 42px 52px 54px; }
+      .lively-panel { padding: 32px 48px 48px; }
+      .grass-finale { padding-top: 34px; padding-bottom: 24px; }
+      .selected-story { padding: 12px 48px 0; }
+      .selected-story::before { left: 48px; }
+      .event { padding: 58px 52px 86px; }
+      .ending { padding: 100px 52px 80px; }
+    }
     @media (max-width: 420px) {
       .name-tag { min-width: 80px; }
       .event { padding-inline: 18px; }
@@ -538,13 +567,13 @@
       .event-overview { margin-top: 29px; padding-block: 21px 19px; }
       .event-fact { grid-template-rows: 27px 20px minmax(32px, auto) 21px; gap: 2px; padding-inline: 4px; }
       .event-fact svg { width: 27px; height: 27px; }
-      .event-fact .fact-label { font-size: 11px; letter-spacing: .08em; }
-      .event-fact strong { font-size: clamp(12px, 3.5vw, 15px); letter-spacing: 0; }
-      .event-fact.time strong { font-size: clamp(15px, 4.2vw, 17px); }
-      .event-fact small { font-size: 10px; }
-      .event-fact small.hall { font-size: clamp(12px, 3.5vw, 14px); letter-spacing: .03em; white-space: nowrap; }
+      .event-fact .fact-label { font-size: 12px; letter-spacing: .07em; }
+      .event-fact strong { font-size: clamp(14px, 3.8vw, 16px); letter-spacing: 0; }
+      .event-fact.time strong { font-size: clamp(17px, 4.5vw, 19px); }
+      .event-fact small { font-size: 11px; }
+      .event-fact small.hall { font-size: clamp(14px, 3.8vw, 15px); letter-spacing: .02em; white-space: nowrap; }
       .event-actions { gap: 8px; }
-      .event-actions a, .event-actions button { padding-inline: 8px; font-size: 11px; letter-spacing: .06em; }
+      .event-actions a, .event-actions button { padding-inline: 8px; font-size: 13px; letter-spacing: .04em; }
       .opening-eyebrow { font-size: 18px; }
       .opening-date { margin-bottom: 20px; }
       .luxury-stage { min-height: 360px; }
@@ -563,7 +592,7 @@
 <body class="invitation-locked">
   <div class="opening-gate" id="openingGate" role="dialog" aria-modal="true" aria-labelledby="openingTitle" aria-describedby="openingHint" tabindex="0">
     <div class="opening-photo-stage" aria-hidden="true">
-      <picture><source srcset="assets/rvnk6871-hero.webp" type="image/webp"><img src="assets/rvnk6871-hero.jpg" width="1200" height="1800" alt=""></picture>
+      <picture><source data-deferred-srcset="assets/rvnk6871-hero.webp" type="image/webp"><img data-deferred-src="assets/rvnk6871-hero.jpg" width="1200" height="1800" alt="" decoding="async"></picture>
     </div>
     <div class="opening-inner">
       <p class="opening-eyebrow" id="openingTitle">A Letter for You</p>
@@ -571,13 +600,13 @@
       <div class="luxury-stage">
         <div class="stationery">
           <div class="invitation-card" aria-hidden="true">
-            <picture><source srcset="assets/villa-line-art-v2.webp?v=20260929" type="image/webp"><img class="villa-line-art" src="assets/villa-line-art-v1.jpg?v=20260924" width="900" height="1200" alt="" loading="eager" fetchpriority="high" decoding="async" data-opening-critical></picture>
+            <picture><source srcset="assets/villa-line-art-v3.webp?v=20260929" type="image/webp"><img class="villa-line-art" src="assets/villa-line-art-v1.jpg?v=20260924" width="720" height="960" alt="" loading="eager" fetchpriority="high" decoding="async" data-opening-critical></picture>
             <div class="card-copy"><span>OUR WEDDING</span><strong>誠摯邀請</strong><small>2026 · 11 · 14</small></div>
           </div>
           <div class="vellum-panel left" aria-hidden="true"></div>
           <div class="vellum-panel right" aria-hidden="true"></div>
           <div class="closure-real" aria-hidden="true">
-            <picture><source srcset="assets/wax-ribbon-reference-v2.webp?v=20260924" type="image/webp"><img src="assets/wax-ribbon-reference-v2.png?v=20260924" width="1500" height="500" alt="" loading="eager" fetchpriority="high" decoding="async" data-opening-critical></picture>
+            <picture><source srcset="assets/wax-ribbon-reference-v3.webp?v=20260929" type="image/webp"><img src="assets/wax-ribbon-reference-v2.png?v=20260924" width="900" height="300" alt="" loading="eager" fetchpriority="high" decoding="async" data-opening-critical></picture>
           </div>
         </div>
         <p class="opening-action-cue" id="openingHint"><span><i aria-hidden="true"></i>輕觸開啟喜帖</span><small>Tap to open</small></p>
@@ -591,7 +620,7 @@
       </div>
     </div>
   </div>
-  <audio id="backgroundMusic" preload="metadata" loop>
+  <audio id="backgroundMusic" preload="none" loop>
     <source src="assets/wedding-music.mp3?v=20260924" type="audio/mpeg">
   </audio>
   <button class="music-toggle" id="musicToggle" type="button" aria-label="Play background music" aria-pressed="false">
@@ -612,7 +641,7 @@
 
   <main class="story">
     <section class="scene cover" aria-label="喜帖封面">
-      <picture><source srcset="assets/rvnk6871-hero.webp" type="image/webp"><img class="cover-photo" src="assets/rvnk6871-hero.jpg" width="1200" height="1800" alt="詹咏朋抱著連怡蘭，兩人在戶外婚禮場景中相視微笑" loading="eager" fetchpriority="high" decoding="async"></picture>
+      <picture><source data-deferred-srcset="assets/rvnk6871-hero.webp" type="image/webp"><img class="cover-photo" data-deferred-src="assets/rvnk6871-hero.jpg" width="1200" height="1800" alt="詹咏朋抱著連怡蘭，兩人在戶外婚禮場景中相視微笑" decoding="async"></picture>
       <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <div class="cover-copy">
         <div class="small">WEDDING INVITATION</div>
@@ -628,8 +657,8 @@
         <h2 aria-label="我們的婚禮"><span aria-hidden="true">我們的</span><em aria-hidden="true">婚禮</em></h2>
       </header>
       <div class="invite-pair">
-        <figure class="reveal"><picture><source srcset="assets/vkvl8681-invite.webp" type="image/webp"><img src="assets/vkvl8681-invite.jpg" width="900" height="1350" alt="穿著白色西裝與婚紗的新郎新娘躲在花藝後開心合照" loading="eager" decoding="async"></picture><figcaption>HAPPY TOGETHER</figcaption></figure>
-        <figure class="reveal"><picture><source srcset="assets/cwqc6584-invite.webp" type="image/webp"><img src="assets/cwqc6584-invite.jpg" width="900" height="1350" alt="穿著白色西裝與婚紗的新郎新娘在小洋樓與白色禮車前歡呼" loading="eager" decoding="async"></picture><figcaption>LOVE IS IN THE AIR</figcaption></figure>
+        <figure class="reveal"><picture><source srcset="assets/vkvl8681-invite.webp" type="image/webp"><img src="assets/vkvl8681-invite.jpg" width="900" height="1350" alt="穿著白色西裝與婚紗的新郎新娘躲在花藝後開心合照" loading="lazy" decoding="async"></picture><figcaption>HAPPY TOGETHER</figcaption></figure>
+        <figure class="reveal"><picture><source srcset="assets/cwqc6584-invite.webp" type="image/webp"><img src="assets/cwqc6584-invite.jpg" width="900" height="1350" alt="穿著白色西裝與婚紗的新郎新娘在小洋樓與白色禮車前歡呼" loading="lazy" decoding="async"></picture><figcaption>LOVE IS IN THE AIR</figcaption></figure>
       </div>
       <div class="invite-footer reveal">
         <p>We would love for you to be part of our day.</p>
@@ -643,7 +672,7 @@
         <h2>Hello, it’s<em>us!</em></h2>
       </div>
       <div class="cutout-wrap reveal">
-        <picture><source srcset="assets/bgcv0956-cutout-v1.webp" type="image/webp"><img src="assets/bgcv0956-cutout-v1.png" width="900" height="1350" alt="新郎詹咏朋與新娘連怡蘭的去背婚紗合照" loading="eager" decoding="async"></picture>
+        <picture><source srcset="assets/bgcv0956-cutout-v1.webp" type="image/webp"><img src="assets/bgcv0956-cutout-v1.png" width="900" height="1350" alt="新郎詹咏朋與新娘連怡蘭的去背婚紗合照" loading="lazy" decoding="async"></picture>
       </div>
       <span class="intro-star s1" aria-hidden="true">✦</span><span class="intro-star s2" aria-hidden="true">✦</span>
       <div class="name-tag groom reveal"><small>GROOM</small><strong>詹咏朋</strong></div>
@@ -656,8 +685,8 @@
       </header>
       <article class="grass-panel">
         <div class="grass-duo">
-          <figure class="reveal"><picture><source srcset="assets/ring-closeup-story.webp" type="image/webp"><img src="assets/ring-closeup-story.jpg" width="900" height="1350" alt="新娘展示戒指並與新郎一同微笑" decoding="async"></picture></figure>
-          <figure class="reveal"><picture><source srcset="assets/mhae4062-story.webp" type="image/webp"><img src="assets/mhae4062-story.jpg" width="900" height="1350" alt="新郎新娘在草地上開香檳慶祝" decoding="async"></picture></figure>
+          <figure class="reveal"><picture><source srcset="assets/ring-closeup-story.webp" type="image/webp"><img src="assets/ring-closeup-story.jpg" width="900" height="1350" alt="新娘展示戒指並與新郎一同微笑" loading="lazy" decoding="async"></picture></figure>
+          <figure class="reveal"><picture><source srcset="assets/mhae4062-story.webp" type="image/webp"><img src="assets/mhae4062-story.jpg" width="900" height="1350" alt="新郎新娘在草地上開香檳慶祝" loading="lazy" decoding="async"></picture></figure>
         </div>
         <div class="grass-text"><strong class="reveal">Here’s to forever.</strong></div>
       </article>
@@ -672,8 +701,8 @@
           <strong>Wherever you are,<br>that’s where I want to be.</strong>
         </div>
         <div class="warm-collage">
-          <figure class="warm-photo-main reveal"><picture><source srcset="assets/rfvj7409-story.webp" type="image/webp"><img src="assets/rfvj7409-story.jpg" width="900" height="1350" alt="新郎新娘在暖色花藝室內自然互動" decoding="async"></picture></figure>
-          <figure class="warm-photo-detail reveal"><picture><source srcset="assets/mkdj2016-story.webp" type="image/webp"><img src="assets/mkdj2016-story.jpg" width="900" height="1350" alt="新郎新娘在暖色花藝室內依偎相視" decoding="async"></picture></figure>
+          <figure class="warm-photo-main reveal"><picture><source srcset="assets/rfvj7409-story.webp" type="image/webp"><img src="assets/rfvj7409-story.jpg" width="900" height="1350" alt="新郎新娘在暖色花藝室內自然互動" loading="lazy" decoding="async"></picture></figure>
+          <figure class="warm-photo-detail reveal"><picture><source srcset="assets/mkdj2016-story.webp" type="image/webp"><img src="assets/mkdj2016-story.jpg" width="900" height="1350" alt="新郎新娘在暖色花藝室內依偎相視" loading="lazy" decoding="async"></picture></figure>
         </div>
       </article>
     </section>
@@ -741,7 +770,7 @@
     </section>
 
     <section class="scene ending" id="ending" aria-label="喜帖結尾">
-      <figure class="ending-photo"><picture><source srcset="assets/wwxa2790-story.webp" type="image/webp"><img src="assets/wwxa2790-story.jpg" width="1200" height="800" alt="新郎新娘在逆光門邊親吻，婚紗裙擺飄動" decoding="async"></picture></figure>
+      <figure class="ending-photo"><picture><source srcset="assets/wwxa2790-story.webp" type="image/webp"><img src="assets/wwxa2790-story.jpg" width="1200" height="800" alt="新郎新娘在逆光門邊親吻，婚紗裙擺飄動" loading="lazy" decoding="async"></picture></figure>
       <div class="ending-copy reveal"><span class="script">To be continued…</span><h2>Our next chapter begins</h2></div>
     </section>
   </main>
@@ -756,46 +785,46 @@
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     /*
-      進場與重播使用不同的觀察範圍。元素剛進入畫面時的位移不會再
-      立刻讓它跨回同一條門檻，避免手機慢速捲動時反覆加減 .in 而跳動。
+      每個區塊只播放一次進場。若離開畫面就移除 .in，使用者往上回看時
+      圖片會再次套用位移，視覺上像整張照片突然跳動。
     */
     const enterObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('in');
-      });
-    }, { threshold: 0.12, rootMargin: '-4% 0px -8%' });
-    const resetObserver = new IntersectionObserver((entries) => {
-      if (reduceMotion.matches) return;
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting && entry.target.classList.contains('in')) {
-          entry.target.classList.remove('in');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          enterObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0, rootMargin: '22% 0px 22%' });
+    }, { threshold: 0.12, rootMargin: '-4% 0px -8%' });
     document.querySelectorAll('.reveal, .wipe').forEach((el) => {
       enterObserver.observe(el);
-      resetObserver.observe(el);
     });
 
     /* 婚貝式慢速自動捲動：使用者介入時暫停，閒置後再接續。 */
     const mobileAutoScroll = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 600;
     const autoScroll = {
-      speed: mobileAutoScroll ? 60 : 50,
+      speed: mobileAutoScroll ? 66 : 70,
       pauseUntil: performance.now() + 1200,
       lastTick: performance.now(),
       targetY: window.scrollY,
+      lastRenderedY: window.scrollY,
       started: false,
       enabled: true
     };
+    function syncAutoScrollPosition() {
+      const scrollY = window.scrollY;
+      autoScroll.targetY = scrollY;
+      autoScroll.lastRenderedY = scrollY;
+    }
     function pauseAutoScroll(duration = 5000) {
       autoScroll.pauseUntil = performance.now() + duration;
       autoScroll.lastTick = performance.now();
-      autoScroll.targetY = window.scrollY;
+      syncAutoScrollPosition();
     }
     function advanceAutoScroll(now) {
       if (!autoScroll.started || !autoScroll.enabled || document.hidden || now < autoScroll.pauseUntil) {
         autoScroll.lastTick = now;
-        autoScroll.targetY = window.scrollY;
+        syncAutoScrollPosition();
         return;
       }
       const scroller = document.scrollingElement || document.documentElement;
@@ -803,10 +832,13 @@
       const atBottom = scrollTop + window.innerHeight >= scroller.scrollHeight - 2;
       if (!atBottom) {
         const elapsed = Math.min(now - autoScroll.lastTick, 64);
-        if (Math.abs(scrollTop - autoScroll.targetY) > 3) autoScroll.targetY = scrollTop;
+        if (Math.abs(scrollTop - autoScroll.lastRenderedY) > 2) syncAutoScrollPosition();
         const maxY = Math.max(0, scroller.scrollHeight - window.innerHeight);
         autoScroll.targetY = Math.min(maxY, autoScroll.targetY + autoScroll.speed * elapsed / 1000);
-        window.scrollTo({ top: autoScroll.targetY, left: 0, behavior: 'instant' });
+        if (autoScroll.targetY > scrollTop) {
+          scroller.scrollTop = autoScroll.targetY;
+          autoScroll.lastRenderedY = scroller.scrollTop;
+        }
       }
       autoScroll.lastTick = now;
     }
@@ -816,15 +848,20 @@
       advanceAutoScroll(now);
       window.requestAnimationFrame(autoScrollFrame);
     }
-    ['wheel', 'touchstart', 'touchmove', 'pointerdown'].forEach((eventName) => {
+    ['wheel', 'touchstart', 'touchmove'].forEach((eventName) => {
       window.addEventListener(eventName, () => pauseAutoScroll(), { passive: true });
     });
+    window.addEventListener('pointerdown', (event) => {
+      const interactiveTarget = event.target instanceof Element
+        && event.target.closest('button, a, input, select, textarea, [role="button"]');
+      if (event.pointerType !== 'mouse' || interactiveTarget) pauseAutoScroll();
+    }, { passive: true });
     window.addEventListener('keydown', (event) => {
       if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) pauseAutoScroll();
     });
     document.addEventListener('visibilitychange', () => {
       autoScroll.lastTick = performance.now();
-      autoScroll.targetY = window.scrollY;
+      syncAutoScrollPosition();
     });
     window.requestAnimationFrame(autoScrollFrame);
     /* 少數手機內嵌瀏覽器會暫停 rAF；只有偵測到逐幀更新停止時才啟用備援。 */
@@ -882,11 +919,43 @@
         window.setTimeout(resolve, 4500);
       });
     }
+    let deferredHeroStarted = false;
+    function loadDeferredHeroImages() {
+      if (deferredHeroStarted) return;
+      deferredHeroStarted = true;
+      document.querySelectorAll('[data-deferred-srcset]').forEach((source) => {
+        source.srcset = source.dataset.deferredSrcset;
+        source.removeAttribute('data-deferred-srcset');
+      });
+      document.querySelectorAll('[data-deferred-src]').forEach((image) => {
+        image.src = image.dataset.deferredSrc;
+        image.removeAttribute('data-deferred-src');
+      });
+    }
+    let storyPreloadStarted = false;
+    function preloadStoryImagesSequentially() {
+      if (storyPreloadStarted) return;
+      storyPreloadStarted = true;
+      const urls = Array.from(document.querySelectorAll('.story img[loading="lazy"]'))
+        .map((image) => image.closest('picture')?.querySelector('source[type="image/webp"]')?.srcset || image.src)
+        .filter(Boolean);
+      let index = 0;
+      const loadNext = () => {
+        if (index >= urls.length) return;
+        const preload = new Image();
+        preload.decoding = 'async';
+        preload.onload = loadNext;
+        preload.onerror = loadNext;
+        preload.src = urls[index++];
+      };
+      loadNext();
+    }
     const openingAssetsReady = Promise.allSettled(
       Array.from(openingGate.querySelectorAll('[data-opening-critical]')).map(waitForOpeningImage)
     ).then(() => {
       openingGate.classList.add('assets-ready');
       openingStatusText.textContent = '喜帖已準備好';
+      loadDeferredHeroImages();
     });
     function resetStoryTop() {
       const scroller = document.scrollingElement || document.documentElement;
@@ -908,14 +977,16 @@
         resetStoryTop();
         window.requestAnimationFrame(resetStoryTop);
         autoScroll.started = true;
-        autoScroll.targetY = 0;
-        pauseAutoScroll(1200);
-      }, reduceMotion.matches ? 0 : 360);
+        syncAutoScrollPosition();
+        pauseAutoScroll(mobileAutoScroll ? 650 : 350);
+        window.setTimeout(preloadStoryImagesSequentially, 900);
+      }, reduceMotion.matches ? 0 : 300);
     }
     async function beginOpening() {
       if (openingStarted || openingFinished) return;
       openingStarted = true;
       resetStoryTop();
+      loadDeferredHeroImages();
       setMusicPlaying(true);
       openingGate.classList.add('is-preparing');
       openingStatusText.textContent = '正在準備喜帖…';
@@ -924,7 +995,7 @@
       openingGate.classList.remove('is-preparing');
       openingGate.classList.add('is-opening');
       openingStatusText.textContent = '正在開啟喜帖…';
-      const finishDelay = reduceMotion.matches ? 80 : 4100;
+      const finishDelay = reduceMotion.matches ? 80 : 3400;
       openingTimers.push(window.setTimeout(revealStory, finishDelay));
     }
     openingGate.addEventListener('click', beginOpening);
