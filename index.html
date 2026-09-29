@@ -87,6 +87,8 @@
       background: var(--paper);
       box-shadow: 0 0 70px rgba(42,28,20,.22);
     }
+    body.invitation-locked .story { visibility: hidden; }
+    body.invitation-locked.story-handoff .story { visibility: visible; }
     .scene { position: relative; min-height: 100svh; overflow: hidden; isolation: isolate; }
     .scene-kicker { font: 600 13px/1 var(--latin); letter-spacing: .2em; }
     .scene-title {
@@ -436,17 +438,6 @@
     .stationery { position: relative; z-index: 2; width: min(82vw, 350px); aspect-ratio: 3 / 4; transform-style: preserve-3d; filter: drop-shadow(0 25px 25px rgba(67,45,30,.18)); transition: transform 2.85s cubic-bezier(.18,.7,.18,1) .32s, opacity .8s ease 2.4s, filter 2.3s ease .32s; }
     .invitation-card { position: absolute; inset: 0; overflow: hidden; border: 1px solid rgba(129,94,58,.28); background: #f8f0e5; box-shadow: inset 0 0 35px rgba(122,86,50,.06); transition: transform 1.45s cubic-bezier(.2,.8,.2,1) .25s, box-shadow 1.1s ease; }
     .villa-line-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .61; mix-blend-mode: multiply; filter: brightness(1.08) saturate(.78) blur(0); transform: scale(1); transition: opacity .9s ease 2.1s, filter 1s ease 2.05s, transform 2.85s cubic-bezier(.18,.7,.18,1) .32s; }
-    .opening-photo-stage { position: fixed; z-index: 8; left: 50%; top: 0; bottom: 0; width: min(100%, var(--story-max)); opacity: 0; pointer-events: none; overflow: hidden; background: #d8cbb9; -webkit-mask-image: linear-gradient(to bottom, #000 0 44%, transparent 56% 100%); mask-image: linear-gradient(to bottom, #000 0 44%, transparent 56% 100%); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-size: 100% 300%; mask-size: 100% 300%; -webkit-mask-position: 0 100%; mask-position: 0 100%; filter: sepia(.42) saturate(.72) brightness(1.04) blur(.8px); transform: translateX(-50%) scale(1.025); transform-origin: center center; transition: opacity 1s ease 1.95s, -webkit-mask-position 1.15s cubic-bezier(.4,0,.2,1) 1.8s, mask-position 1.15s cubic-bezier(.4,0,.2,1) 1.8s, filter 1.1s ease 1.85s, transform 1.2s cubic-bezier(.2,.72,.2,1) 1.8s; }
-    .opening-photo-stage::after {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,250,241,.08), transparent 58%, rgba(27,15,11,.34));
-      pointer-events: none;
-    }
-    .opening-photo-stage picture { position: absolute; inset: 0; display: block; overflow: hidden; }
-    .opening-photo-stage img { position: absolute; inset: -2%; display: block; width: 104%; height: 104%; object-fit: cover; }
     .card-copy { position: absolute; z-index: 2; left: 13%; right: 13%; top: 14%; display: grid; justify-items: center; color: #5a4437; text-align: center; text-shadow: 0 1px rgba(255,255,255,.7); transition: opacity .8s ease; }
     .card-copy > span { color: #9a7650; font: 600 10px/1 var(--latin); letter-spacing: .25em; }
     .card-copy > strong { margin-top: 13px; color: var(--wine); font: 400 32px/1 "ChenYuluoyan Invite", cursive; letter-spacing: .12em; }
@@ -475,11 +466,10 @@
     .opening-gate.is-opening .vellum-panel.left { opacity: .08; transform: rotateY(-112deg); }
     .opening-gate.is-opening .vellum-panel.right { opacity: .08; transform: rotateY(112deg); }
     .opening-gate.is-opening .invitation-card { box-shadow: 0 28px 44px rgba(77,51,31,.2); }
-    /* 信封開啟後只走一條連續鏡頭：插畫持續放大，後段自然交疊成主圖。 */
+    /* 信封開啟後只保留插畫放大淡出；結束時直接呈現正式 RWD 主頁。 */
     .opening-gate.is-opening .stationery { opacity: 0; filter: drop-shadow(0 34px 40px rgba(67,45,30,.08)); transform: translateY(-4vh) scale(1.29); }
     .opening-gate.is-opening .villa-line-art { opacity: 0; filter: brightness(1.1) saturate(.7) blur(2.5px); transform: scale(1.04); }
     .opening-gate.is-opening .card-copy { opacity: 0; transition-delay: 2.05s; }
-    .opening-gate.is-opening .opening-photo-stage { opacity: 1; -webkit-mask-position: 0 0; mask-position: 0 0; filter: sepia(0) saturate(1) brightness(1) blur(0); transform: translateX(-50%) scale(1); }
     .closure-real { position: absolute; z-index: 7; left: -10%; top: 40.5%; width: 120%; aspect-ratio: 3 / 1; padding: 0; border: 0; background: transparent; pointer-events: none; transform-origin: 52% 53%; transition: transform .72s cubic-bezier(.2,.72,.22,1), opacity .58s ease .1s, filter .62s ease; }
     .closure-real picture, .closure-real img { display: block; width: 100%; height: 100%; }
     .closure-real img { object-fit: contain; filter: drop-shadow(0 5px 5px rgba(68,37,26,.16)); }
@@ -591,9 +581,6 @@
 </head>
 <body class="invitation-locked">
   <div class="opening-gate" id="openingGate" role="dialog" aria-modal="true" aria-labelledby="openingTitle" aria-describedby="openingHint" tabindex="0">
-    <div class="opening-photo-stage" aria-hidden="true">
-      <picture><source data-deferred-srcset="assets/rvnk6871-hero.webp" type="image/webp"><img data-deferred-src="assets/rvnk6871-hero.jpg" width="1200" height="1800" alt="" decoding="async"></picture>
-    </div>
     <div class="opening-inner">
       <p class="opening-eyebrow" id="openingTitle">A Letter for You</p>
       <p class="opening-date">NOVEMBER 14, 2026</p>
@@ -968,19 +955,24 @@
       if (openingFinished) return;
       openingFinished = true;
       openingTimers.forEach((timer) => window.clearTimeout(timer));
-      openingGate.classList.add('is-done');
-      window.setTimeout(() => {
-        openingGate.hidden = true;
-        document.body.classList.remove('invitation-locked');
-        document.body.classList.add('story-opened');
-        window.setTimeout(() => document.body.classList.add('story-ready'), reduceMotion.matches ? 0 : 110);
-        resetStoryTop();
-        window.requestAnimationFrame(resetStoryTop);
-        autoScroll.started = true;
-        syncAutoScrollPosition();
-        pauseAutoScroll(mobileAutoScroll ? 650 : 350);
-        window.setTimeout(preloadStoryImagesSequentially, 900);
-      }, reduceMotion.matches ? 0 : 300);
+      resetStoryTop();
+      document.body.classList.add('story-handoff', 'story-opened');
+      const completeHandoff = () => {
+        document.body.classList.add('story-ready');
+        openingGate.classList.add('is-done');
+        window.setTimeout(() => {
+          openingGate.hidden = true;
+          document.body.classList.remove('invitation-locked', 'story-handoff');
+          resetStoryTop();
+          window.requestAnimationFrame(resetStoryTop);
+          autoScroll.started = true;
+          syncAutoScrollPosition();
+          pauseAutoScroll(mobileAutoScroll ? 650 : 350);
+          window.setTimeout(preloadStoryImagesSequentially, 900);
+        }, reduceMotion.matches ? 0 : 720);
+      };
+      if (reduceMotion.matches) completeHandoff();
+      else window.requestAnimationFrame(completeHandoff);
     }
     async function beginOpening() {
       if (openingStarted || openingFinished) return;
