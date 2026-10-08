@@ -540,6 +540,9 @@
     @media (pointer: coarse), (max-width: 600px) {
       .story-opened .cover-photo,
       .photo-scene > img { animation: none !important; transform: scale(1.01); }
+      /* 閱讀停車資訊時只淡入，不再與手指捲動同時上下位移。 */
+      .parking-note.reveal { transform: none; transition: opacity .55s ease; }
+      .parking-note.reveal.in { transform: none; }
     }
 
     @media (min-width: 700px) { body { padding-block: 20px; } .story { border-radius: 30px; } }
@@ -819,8 +822,15 @@
       targetY: window.scrollY,
       lastRenderedY: window.scrollY,
       started: false,
-      enabled: true
+      enabled: true,
+      holdInEvent: false
     };
+    const eventSection = document.getElementById('event');
+    function eventSectionIsVisible() {
+      if (!eventSection) return false;
+      const rect = eventSection.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < window.innerHeight;
+    }
     function syncAutoScrollPosition() {
       const scrollY = window.scrollY;
       autoScroll.targetY = scrollY;
@@ -832,7 +842,11 @@
       syncAutoScrollPosition();
     }
     function advanceAutoScroll(now) {
-      if (!autoScroll.started || !autoScroll.enabled || document.hidden || now < autoScroll.pauseUntil) {
+      if (autoScroll.holdInEvent && !eventSectionIsVisible()) {
+        autoScroll.holdInEvent = false;
+        autoScroll.pauseUntil = Math.max(autoScroll.pauseUntil, now + 650);
+      }
+      if (!autoScroll.started || !autoScroll.enabled || autoScroll.holdInEvent || document.hidden || now < autoScroll.pauseUntil) {
         autoScroll.lastTick = now;
         syncAutoScrollPosition();
         return;
@@ -852,6 +866,10 @@
       }
       autoScroll.lastTick = now;
     }
+    function pauseForUserInteraction() {
+      if (mobileAutoScroll && eventSectionIsVisible()) autoScroll.holdInEvent = true;
+      pauseAutoScroll();
+    }
     let lastAnimationFrameAt = performance.now();
     function autoScrollFrame(now) {
       lastAnimationFrameAt = now;
@@ -859,12 +877,12 @@
       window.requestAnimationFrame(autoScrollFrame);
     }
     ['wheel', 'touchstart', 'touchmove'].forEach((eventName) => {
-      window.addEventListener(eventName, () => pauseAutoScroll(), { passive: true });
+      window.addEventListener(eventName, pauseForUserInteraction, { passive: true });
     });
     window.addEventListener('pointerdown', (event) => {
       const interactiveTarget = event.target instanceof Element
         && event.target.closest('button, a, input, select, textarea, [role="button"]');
-      if (event.pointerType !== 'mouse' || interactiveTarget) pauseAutoScroll();
+      if (event.pointerType !== 'mouse' || interactiveTarget) pauseForUserInteraction();
     }, { passive: true });
     window.addEventListener('keydown', (event) => {
       if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) pauseAutoScroll();
