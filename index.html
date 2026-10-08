@@ -338,7 +338,10 @@
     .calendar-grid b { color: rgba(46,39,35,.84); font-size: 12px; font-weight: 700; }
     .calendar-grid .muted { color: rgba(46,39,35,.25); }
     .calendar-grid .selected { width: 30px; height: 30px; margin: auto; border-radius: 50%; color: white; background: var(--wine); box-shadow: 0 0 0 5px rgba(123,45,53,.12); }
-    .venue-card { margin-top: 16px; overflow: hidden; }
+    .venue-card { display: block; margin-top: 16px; overflow: hidden; color: inherit; text-decoration: none; cursor: pointer; transition: transform .25s ease, box-shadow .25s ease; }
+    .venue-card:focus-visible { outline: 3px solid rgba(123,45,53,.28); outline-offset: 3px; }
+    @media (hover: hover) { .venue-card:hover { transform: translateY(-2px); box-shadow: 0 22px 40px rgba(80,55,39,.12); } }
+    .venue-card:active { transform: translateY(0) scale(.995); }
     .mini-map { position: relative; display: grid; height: 210px; place-items: center; overflow: hidden; background: #dedbd2; isolation: isolate; }
     .map-art { position: absolute; z-index: -1; inset: 0; overflow: hidden; background: radial-gradient(circle at 12% 18%, rgba(151,168,136,.4) 0 12%, transparent 12.5%), radial-gradient(circle at 88% 76%, rgba(151,168,136,.38) 0 14%, transparent 14.5%), linear-gradient(27deg, transparent 0 31%, rgba(255,255,255,.88) 31.5% 38%, transparent 38.5%), linear-gradient(94deg, transparent 0 52%, rgba(255,255,255,.82) 52.5% 59%, transparent 59.5%), linear-gradient(145deg, #e9e4d9, #d9d5ca); }
     .map-art::before, .map-art::after { content: ""; position: absolute; border: 1px solid rgba(116,102,89,.26); transform: rotate(-12deg); }
@@ -352,16 +355,20 @@
     .venue-copy { padding: 20px; }
     .venue-copy h3 { margin: 0; font: 600 23px/1.3 "Noto Serif TC", serif; letter-spacing: .06em; }
     .venue-copy p { margin: 9px 0 0; color: rgba(46,39,35,.82); font: 700 15px/1.65 "Noto Serif TC", serif; }
-    .parking-note { position: relative; margin-top: 16px; padding: 19px 20px 18px; overflow: hidden; border: 1px solid rgba(123,45,53,.2); border-radius: 20px; background: linear-gradient(135deg, rgba(255,255,255,.78), rgba(247,232,216,.82)); box-shadow: 0 14px 28px rgba(80,55,39,.07); }
-    .parking-note::after { content: "P"; position: absolute; right: -4px; top: -20px; color: rgba(123,45,53,.055); font: 600 104px/1 var(--latin); pointer-events: none; }
-    .parking-title { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; margin: 0 0 10px; color: var(--wine); font: 700 17px/1.35 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .08em; }
-    .parking-title svg { flex: 0 0 auto; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.6; }
-    .parking-note p { position: relative; z-index: 1; margin: 0; color: rgba(46,39,35,.88); font: 600 14px/1.85 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .025em; }
-    .parking-note p + p { margin-top: 9px; padding-top: 9px; border-top: 1px solid rgba(123,45,53,.13); }
+    .parking-note { position: relative; margin-top: 22px; padding: 7px 5px 10px 12px; overflow: visible; }
+    .parking-note::before, .parking-note::after { content: ""; position: absolute; pointer-events: none; border-radius: 18px; }
+    .parking-note::before { inset: 0 20px 1px 1px; background: rgba(188,117,101,.18); transform: rotate(-1.2deg); }
+    .parking-note::after { inset: 9px 1px 0 18px; background: rgba(235,215,195,.76); transform: rotate(.7deg); }
+    .parking-card { position: relative; z-index: 1; overflow: hidden; border: 1px solid rgba(123,45,53,.09); border-radius: 15px; background: rgba(255,251,244,.97); box-shadow: 0 13px 27px rgba(80,55,39,.09); }
+    .parking-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0; padding: 11px 16px; color: #fffaf2; background: var(--wine); font: 800 18px/1.35 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .08em; }
+    .parking-title small { flex: 0 0 auto; color: rgba(255,250,242,.76); font: 700 11px/1.3 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .06em; }
+    .parking-copy { padding: 15px 17px 16px; }
+    .parking-note p { margin: 0; color: rgba(46,39,35,.88); font: 600 14px/1.85 "Noto Serif TC", "Microsoft JhengHei", serif; letter-spacing: .025em; }
+    .parking-note p + p { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(123,45,53,.15); }
     .parking-note strong { color: var(--wine); font-weight: 700; }
     .event-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
     .event-actions a, .event-actions button { min-height: 50px; display: grid; place-items: center; padding: 0 14px; border: 1px solid var(--wine); border-radius: 999px; color: var(--wine); background: transparent; font: 700 13px/1.25 "Noto Serif TC", serif; letter-spacing: .075em; text-align: center; text-decoration: none; cursor: pointer; }
-    .event-actions button:last-child { color: white; background: var(--wine); }
+    .event-actions button:last-child { color: var(--wine); background: transparent; }
 
     /* 開場封蠟信封：點擊即提供音樂播放所需的使用者手勢。 */
     body.invitation-locked { height: 100svh; overflow: hidden; }
@@ -577,8 +584,10 @@
       .event-fact.time strong { font-size: clamp(17px, 4.5vw, 19px); }
       .event-fact small { font-size: 11px; }
       .event-fact small.hall { font-size: clamp(14px, 3.8vw, 15px); letter-spacing: .02em; white-space: nowrap; }
-      .parking-note { padding: 17px 17px 16px; }
-      .parking-title { font-size: 16px; }
+      .parking-note { margin-top: 20px; padding: 6px 3px 9px 9px; }
+      .parking-title { padding: 10px 14px; font-size: 17px; }
+      .parking-title small { font-size: 10px; }
+      .parking-copy { padding: 14px 15px 15px; }
       .parking-note p { font-size: 14px; line-height: 1.8; }
       .event-actions { gap: 8px; }
       .event-actions a, .event-actions button { padding-inline: 8px; font-size: 13px; letter-spacing: .04em; }
@@ -641,6 +650,17 @@
         <a class="primary" id="calendarPrimary" href="assets/yongpeng-yilan-wedding.ics?v=20260924">加入手機內建行事曆（iOS）</a>
       </div>
       <button class="calendar-close" id="calendarClose" type="button">稍後再說</button>
+    </div>
+  </div>
+  <div class="calendar-sheet" id="mapSheet" hidden>
+    <div class="calendar-dialog" role="dialog" aria-modal="true" aria-labelledby="mapDialogTitle" aria-describedby="mapDialogDescription">
+      <div class="scene-kicker">導航提醒</div>
+      <h2 id="mapDialogTitle">即將開啟地圖</h2>
+      <p id="mapDialogDescription">將前往 Google 地圖查看 The Lin 林酒店的位置與導航路線。</p>
+      <div class="calendar-options">
+        <a class="primary" id="mapConfirm" href="#" target="_blank" rel="noopener noreferrer">開啟 Google 地圖</a>
+      </div>
+      <button class="calendar-close" id="mapCancel" type="button">取消</button>
     </div>
   </div>
 
@@ -757,7 +777,7 @@
           <span>30</span><span class="muted">1</span><span class="muted">2</span><span class="muted">3</span><span class="muted">4</span><span class="muted">5</span><span class="muted">6</span>
         </div>
       </div>
-      <div class="venue-card reveal">
+      <a class="venue-card reveal" href="https://www.google.com/maps/search/?api=1&amp;query=%E8%87%BA%E4%B8%AD%E6%9E%97%E9%85%92%E5%BA%97%20%E8%87%BA%E4%B8%AD%E5%B8%82%E8%A5%BF%E5%B1%AF%E5%8D%80%E6%9C%9D%E5%AF%8C%E8%B7%AF99%E8%99%9F" target="_blank" rel="noopener noreferrer" data-map-confirm aria-label="開啟 The Lin 林酒店的 Google 地圖">
         <div class="mini-map" aria-label="The Lin 林酒店位置示意">
           <div class="map-art" aria-hidden="true"></div>
           <div class="map-location">
@@ -767,18 +787,19 @@
           </div>
         </div>
         <div class="venue-copy"><h3>The Lin 林酒店</h3><p>臺中市西屯區朝富路99號（臺灣大道路口）</p></div>
-      </div>
+      </a>
       <div class="event-actions reveal">
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=%E8%87%BA%E4%B8%AD%E6%9E%97%E9%85%92%E5%BA%97%20%E8%87%BA%E4%B8%AD%E5%B8%82%E8%A5%BF%E5%B1%AF%E5%8D%80%E6%9C%9D%E5%AF%8C%E8%B7%AF99%E8%99%9F" target="_blank" rel="noopener noreferrer" aria-label="在 Google 地圖開啟 The Lin 林酒店">開啟地圖</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=%E8%87%BA%E4%B8%AD%E6%9E%97%E9%85%92%E5%BA%97%20%E8%87%BA%E4%B8%AD%E5%B8%82%E8%A5%BF%E5%B1%AF%E5%8D%80%E6%9C%9D%E5%AF%8C%E8%B7%AF99%E8%99%9F" target="_blank" rel="noopener noreferrer" data-map-confirm aria-label="在 Google 地圖開啟 The Lin 林酒店">開啟地圖</a>
         <button type="button" id="calendarButton" aria-haspopup="dialog" aria-controls="calendarSheet">加入行事曆（iOS）</button>
       </div>
       <aside class="parking-note reveal" aria-labelledby="parkingTitle">
-        <h3 class="parking-title" id="parkingTitle">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="20" rx="4"></rect><path d="M12 23V10h5.3a4.3 4.3 0 0 1 0 8.6H12"></path></svg>
-          停車小提醒
-        </h3>
-        <p>飯店 B1–B3 備有地下停車場，<strong>車位採先到先停，恕無法事先保留</strong>。婚宴當日車位可能較早停滿，若您開車前來，建議提早一些抵達，也為尋找周邊停車場多預留一點時間，讓赴宴更從容。</p>
-        <p>若停放於飯店地下停車場，別忘了向<strong>總招待或接待桌</strong>領取停車折抵券喔！</p>
+        <div class="parking-card">
+          <h3 class="parking-title" id="parkingTitle"><span>停車小提醒</span><small>賓客提醒</small></h3>
+          <div class="parking-copy">
+            <p>飯店 B1–B3 備有地下停車場，<strong>車位採先到先停，恕無法事先保留</strong>。婚宴當日車位可能較早停滿，若您開車前來，建議提早一些抵達，也為尋找周邊停車場多預留一點時間，讓赴宴更從容。</p>
+            <p>若停放於飯店地下停車場，別忘了向<strong>總招待或接待桌</strong>領取停車折抵券喔！</p>
+          </div>
+        </div>
       </aside>
     </section>
 
@@ -1141,6 +1162,10 @@
     const calendarSheet = document.getElementById('calendarSheet');
     const calendarClose = document.getElementById('calendarClose');
     const calendarPrimary = document.getElementById('calendarPrimary');
+    const mapSheet = document.getElementById('mapSheet');
+    const mapConfirm = document.getElementById('mapConfirm');
+    const mapCancel = document.getElementById('mapCancel');
+    let mapReturnFocus = null;
     function closeCalendarSheet() {
       calendarSheet.hidden = true;
       calendarButton.focus({ preventScroll: true });
@@ -1153,8 +1178,30 @@
     calendarSheet.addEventListener('click', (event) => {
       if (event.target === calendarSheet) closeCalendarSheet();
     });
+    function closeMapSheet(restoreFocus = true) {
+      mapSheet.hidden = true;
+      if (restoreFocus && mapReturnFocus) mapReturnFocus.focus({ preventScroll: true });
+    }
+    document.querySelectorAll('[data-map-confirm]').forEach((trigger) => {
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        mapReturnFocus = trigger;
+        mapConfirm.href = trigger.href;
+        mapSheet.hidden = false;
+        mapConfirm.focus({ preventScroll: true });
+      });
+    });
+    mapCancel.addEventListener('click', () => closeMapSheet());
+    mapSheet.addEventListener('click', (event) => {
+      if (event.target === mapSheet) closeMapSheet();
+    });
+    mapConfirm.addEventListener('click', () => {
+      window.setTimeout(() => closeMapSheet(false), 250);
+    });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !calendarSheet.hidden) closeCalendarSheet();
+      if (event.key !== 'Escape') return;
+      if (!mapSheet.hidden) closeMapSheet();
+      else if (!calendarSheet.hidden) closeCalendarSheet();
     });
     calendarPrimary.addEventListener('click', () => {
       window.setTimeout(() => { calendarSheet.hidden = true; }, 250);
